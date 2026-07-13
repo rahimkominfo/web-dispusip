@@ -1,0 +1,25 @@
+{
+  "name": "web-dispusip",
+  "version": "1.0.0",
+  "description": "CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure. More information can be found at the [official site](https://codeigniter.com).",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "postcss resources/css/app.css -o public/css/app.css",
+    "watch": "postcss resources/css/app.css -o public/css/app.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.3.0",
+    "@tailwindcss/postcss": "^4.3.2",
+    "ckeditor5": "^48.3.0",
+    "postcss": "^8.5.16",
+    "postcss-cli": "^11.0.1",
+    "postcss-url": "^10.1.4",
+    "tailwindcss": "^4.3.2"
+  }
+}
