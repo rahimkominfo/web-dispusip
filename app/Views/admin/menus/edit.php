@@ -51,7 +51,13 @@
                 <select name="parent_id" id="parent_id" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-3 py-2 text-on-surface focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 focus:outline-none transition-shadow">
                     <option value="">-- Menu Utama (Tidak Ada) --</option>
                     <?php foreach ($parentMenus as $parent): ?>
-                        <option value="<?= esc($parent['id']) ?>" <?= old('parent_id', esc($menu['parent_id'])) == $parent['id'] ? 'selected' : '' ?>><?= esc($parent['title']) ?></option>
+                        <?php 
+                        $indent = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $parent['depth']);
+                        $prefix = $parent['depth'] > 0 ? '└── ' : '';
+                        ?>
+                        <option value="<?= esc($parent['id']) ?>" <?= old('parent_id', esc($menu['parent_id'])) == $parent['id'] ? 'selected' : '' ?>>
+                            <?= $indent . $prefix . esc($parent['title']) ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>

@@ -47,8 +47,8 @@
                         <tr class="hover:bg-surface-container-low transition-colors">
                             <td class="p-4 py-3 text-on-surface-variant"><?= esc($item['id']) ?></td>
                             <td class="p-4 py-3 font-semibold text-primary">
-                                <?php if ($item['parent_id']): ?>
-                                    <span class="text-on-surface-variant font-normal mr-1">└──</span>
+                                <?php if ($item['depth'] > 0): ?>
+                                    <span class="text-on-surface-variant font-normal mr-1" style="padding-left: <?= ($item['depth'] - 1) * 1.5 ?>rem;">└──</span>
                                 <?php endif; ?>
                                 <?= esc($item['title']) ?>
                             </td>

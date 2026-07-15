@@ -22,8 +22,24 @@ class Menus extends BaseController
                                  ->orderBy('mst_menu.sort_order', 'ASC')
                                  ->findAll();
 
+        $hierarchicalMenus = $this->buildHierarchicalList($menus);
+        
+        // Find any menus that might have been left out (fallback/just in case)
+        $includedIds = array_column($hierarchicalMenus, 'id');
+        $leftovers = [];
+        foreach ($menus as $m) {
+            if (!in_array($m['id'], $includedIds)) {
+                $m['depth'] = 0;
+                $leftovers[] = $m;
+            }
+        }
+        
+        if (!empty($leftovers)) {
+            $hierarchicalMenus = array_merge($hierarchicalMenus, $leftovers);
+        }
+
         $data = [
-            'menus' => $menus
+            'menus' => $hierarchicalMenus
         ];
 
         return view('admin/menus/index', $data);
@@ -31,8 +47,24 @@ class Menus extends BaseController
 
     public function create()
     {
-        // Retrieve potential parent menus (top-level menus with no parent_id)
-        $parentMenus = $this->menuModel->where('parent_id', null)->findAll();
+        // Retrieve all menus to determine their depth
+        $allMenus = $this->menuModel->orderBy('sort_order', 'ASC')->findAll();
+        
+        $menusById = [];
+        foreach ($allMenus as $menu) {
+            $menusById[$menu['id']] = $menu;
+        }
+
+        // Filter potential parent menus: depth <= 1 (Level 1 or Level 2 menus)
+        $parentMenus = [];
+        foreach ($allMenus as $menu) {
+            if ($this->getDepth($menu['id'], $menusById) <= 1) {
+                $parentMenus[] = $menu;
+            }
+        }
+
+        // Sort parent menus hierarchically
+        $parentMenus = $this->buildHierarchicalList($parentMenus);
 
         $data = [
             'parentMenus' => $parentMenus
@@ -58,6 +90,24 @@ class Menus extends BaseController
         $parentId = $this->request->getPost('parent_id');
         $parentId = ($parentId === '' || $parentId === '0') ? null : $parentId;
 
+        if ($parentId !== null) {
+            $parentMenu = $this->menuModel->find($parentId);
+            if (!$parentMenu) {
+                return redirect()->back()->withInput()->with('errors', ['parent_id' => 'Menu induk tidak ditemukan.']);
+            }
+            
+            // Get all menus to check parent's depth
+            $allMenus = $this->menuModel->findAll();
+            $menusById = [];
+            foreach ($allMenus as $m) {
+                $menusById[$m['id']] = $m;
+            }
+            
+            if ($this->getDepth($parentId, $menusById) > 1) {
+                return redirect()->back()->withInput()->with('errors', ['parent_id' => 'Menu induk tidak boleh berupa sub-sub-menu (maksimal 3 level).']);
+            }
+        }
+
         $this->menuModel->save([
             'parent_id'  => $parentId,
             'title'      => $this->request->getPost('title'),
@@ -76,10 +126,34 @@ class Menus extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Menu tidak ditemukan.");
         }
 
-        // Retrieve potential parent menus (excluding self to avoid hierarchy loops)
-        $parentMenus = $this->menuModel->where('parent_id', null)
-                                       ->where('id !=', $id)
-                                       ->findAll();
+        // Get all menus
+        $allMenus = $this->menuModel->orderBy('sort_order', 'ASC')->findAll();
+        
+        $menusById = [];
+        foreach ($allMenus as $m) {
+            $menusById[$m['id']] = $m;
+        }
+
+        // Calculate max descendant depth offset for the current menu
+        $maxOffset = $this->getMaxDescendantDepthOffset($id, $allMenus);
+
+        // Filter potential parent menus
+        $parentMenus = [];
+        foreach ($allMenus as $m) {
+            // 1. Cannot be self or descendant
+            if ($this->isDescendantOrSelf($id, $m['id'], $allMenus)) {
+                continue;
+            }
+
+            // 2. Depth constraint: depth(P) <= 1 - maxOffset
+            $pDepth = $this->getDepth($m['id'], $menusById);
+            if ($pDepth <= (1 - $maxOffset)) {
+                $parentMenus[] = $m;
+            }
+        }
+
+        // Sort hierarchically
+        $parentMenus = $this->buildHierarchicalList($parentMenus);
 
         $data = [
             'menu'        => $menu,
@@ -111,9 +185,30 @@ class Menus extends BaseController
         $parentId = $this->request->getPost('parent_id');
         $parentId = ($parentId === '' || $parentId === '0') ? null : $parentId;
 
-        // Prevent setting self as parent
-        if ($parentId == $id) {
-            return redirect()->back()->withInput()->with('errors', ['parent_id' => 'Menu tidak dapat menjadi induk dari dirinya sendiri.']);
+        if ($parentId !== null) {
+            // Prevent setting self as parent
+            if ($parentId == $id) {
+                return redirect()->back()->withInput()->with('errors', ['parent_id' => 'Menu tidak dapat menjadi induk dari dirinya sendiri.']);
+            }
+
+            $allMenus = $this->menuModel->findAll();
+            
+            // Prevent setting descendant as parent (avoid circular reference)
+            if ($this->isDescendantOrSelf($id, $parentId, $allMenus)) {
+                return redirect()->back()->withInput()->with('errors', ['parent_id' => 'Menu induk tidak boleh berupa sub-menu dari menu ini sendiri.']);
+            }
+
+            // Depth validation
+            $menusById = [];
+            foreach ($allMenus as $m) {
+                $menusById[$m['id']] = $m;
+            }
+            $pDepth = $this->getDepth($parentId, $menusById);
+            $maxOffset = $this->getMaxDescendantDepthOffset($id, $allMenus);
+
+            if ($pDepth > (1 - $maxOffset)) {
+                return redirect()->back()->withInput()->with('errors', ['parent_id' => 'Struktur menu terlalu dalam. Maksimal struktur menu adalah 3 level.']);
+            }
         }
 
         $this->menuModel->update($id, [
@@ -140,5 +235,80 @@ class Menus extends BaseController
         $this->menuModel->delete($id);
 
         return redirect()->to(base_url('admin/menus'))->with('success', 'Menu berhasil dihapus.');
+    }
+
+    /**
+     * Get the depth of a menu item.
+     * Level 1 (Root) = 0
+     * Level 2 (Sub) = 1
+     * Level 3 (Sub-sub) = 2
+     */
+    private function getDepth($menuId, array $menusById)
+    {
+        $depth = 0;
+        $currentId = $menuId;
+        while ($currentId !== null && isset($menusById[$currentId])) {
+            $parentId = $menusById[$currentId]['parent_id'];
+            if ($parentId === null) {
+                break;
+            }
+            $depth++;
+            $currentId = $parentId;
+        }
+        return $depth;
+    }
+
+    /**
+     * Get the maximum depth offset of any descendant of a menu item.
+     * If no children: returns 0
+     * If has children but no grandchildren: returns 1
+     * If has grandchildren: returns 2
+     */
+    private function getMaxDescendantDepthOffset($menuId, array $menus)
+    {
+        $maxOffset = 0;
+        foreach ($menus as $m) {
+            if ($m['parent_id'] == $menuId) {
+                $maxOffset = max($maxOffset, 1 + $this->getMaxDescendantDepthOffset($m['id'], $menus));
+            }
+        }
+        return $maxOffset;
+    }
+
+    /**
+     * Check if menu B is a descendant of menu A (or is menu A itself)
+     */
+    private function isDescendantOrSelf($menuId, $targetId, array $menus)
+    {
+        if ($menuId == $targetId) {
+            return true;
+        }
+        foreach ($menus as $m) {
+            if ($m['parent_id'] == $menuId) {
+                if ($this->isDescendantOrSelf($m['id'], $targetId, $menus)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Build hierarchical list of menus
+     */
+    private function buildHierarchicalList(array $menus, $parentId = null, $depth = 0)
+    {
+        $branch = [];
+        foreach ($menus as $menu) {
+            if ($menu['parent_id'] == $parentId) {
+                $menu['depth'] = $depth;
+                $branch[] = $menu;
+                $children = $this->buildHierarchicalList($menus, $menu['id'], $depth + 1);
+                if ($children) {
+                    $branch = array_merge($branch, $children);
+                }
+            }
+        }
+        return $branch;
     }
 }
