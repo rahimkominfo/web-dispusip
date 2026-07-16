@@ -16,30 +16,66 @@ class Menus extends BaseController
 
     public function index()
     {
-        // Join self to display parent menu title if available
-        $menus = $this->menuModel->select('mst_menu.*, parent.title as parent_title')
-                                 ->join('mst_menu parent', 'parent.id = mst_menu.parent_id', 'left')
-                                 ->orderBy('mst_menu.sort_order', 'ASC')
-                                 ->findAll();
-
-        $hierarchicalMenus = $this->buildHierarchicalList($menus);
-        
-        // Find any menus that might have been left out (fallback/just in case)
-        $includedIds = array_column($hierarchicalMenus, 'id');
-        $leftovers = [];
-        foreach ($menus as $m) {
-            if (!in_array($m['id'], $includedIds)) {
-                $m['depth'] = 0;
-                $leftovers[] = $m;
-            }
+        $cari = $this->request->getGet('cari');
+        $perPage = 10;
+        $page = $this->request->getGet('page') ? (int)$this->request->getGet('page') : 1;
+        if ($page < 1) {
+            $page = 1;
         }
-        
-        if (!empty($leftovers)) {
-            $hierarchicalMenus = array_merge($hierarchicalMenus, $leftovers);
+
+        if (!empty($cari)) {
+            // Flat search list
+            $this->menuModel->select('mst_menu.*, parent.title as parent_title')
+                            ->join('mst_menu parent', 'parent.id = mst_menu.parent_id', 'left')
+                            ->groupStart()
+                            ->like('mst_menu.title', $cari)
+                            ->orLike('mst_menu.url', $cari)
+                            ->orLike('parent.title', $cari)
+                            ->groupEnd();
+            
+            $menus = $this->menuModel->orderBy('mst_menu.sort_order', 'ASC')
+                                     ->paginate($perPage, 'default');
+            
+            foreach ($menus as &$m) {
+                $m['depth'] = 0;
+            }
+            
+            $pager = $this->menuModel->pager;
+        } else {
+            // Hierarchical list without search
+            $allMenus = $this->menuModel->select('mst_menu.*, parent.title as parent_title')
+                                        ->join('mst_menu parent', 'parent.id = mst_menu.parent_id', 'left')
+                                        ->orderBy('mst_menu.sort_order', 'ASC')
+                                        ->findAll();
+
+            $hierarchicalMenus = $this->buildHierarchicalList($allMenus);
+            
+            // Find any menus that might have been left out (fallback/just in case)
+            $includedIds = array_column($hierarchicalMenus, 'id');
+            $leftovers = [];
+            foreach ($allMenus as $m) {
+                if (!in_array($m['id'], $includedIds)) {
+                    $m['depth'] = 0;
+                    $leftovers[] = $m;
+                }
+            }
+            
+            if (!empty($leftovers)) {
+                $hierarchicalMenus = array_merge($hierarchicalMenus, $leftovers);
+            }
+
+            $total = count($hierarchicalMenus);
+            $offset = ($page - 1) * $perPage;
+            $menus = array_slice($hierarchicalMenus, $offset, $perPage);
+            
+            $pager = \Config\Services::pager();
+            $pager->store('default', $page, $perPage, $total);
         }
 
         $data = [
-            'menus' => $hierarchicalMenus
+            'menus' => $menus,
+            'pager' => $pager,
+            'cari'  => $cari
         ];
 
         return view('admin/menus/index', $data);

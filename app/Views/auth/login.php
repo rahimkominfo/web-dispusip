@@ -52,7 +52,7 @@
         <!-- Notification Alerts -->
         <?php if (session()->getFlashdata('error')): ?>
             <div class="bg-red-50 border-l-4 border-error text-error p-4 rounded-lg mb-6 flex items-start gap-3 shadow-sm animate-fade-in" role="alert" id="alert-error">
-                <span class="material-symbols-outlined text-error shrink-0">error</span>
+                <i class="fa-solid fa-exclamation-circle text-error shrink-0"></i>
                 <div class="text-sm font-semibold">
                     <?= session()->getFlashdata('error') ?>
                 </div>
@@ -61,7 +61,7 @@
 
         <?php if (session()->getFlashdata('success')): ?>
             <div class="bg-green-50 border-l-4 border-green-500 text-green-700 p-4 rounded-lg mb-6 flex items-start gap-3 shadow-sm animate-fade-in" role="alert" id="alert-success">
-                <span class="material-symbols-outlined text-green-600 shrink-0">check_circle</span>
+                <i class="fa-solid fa-check-circle text-green-600 shrink-0"></i>
                 <div class="text-sm font-semibold">
                     <?= session()->getFlashdata('success') ?>
                 </div>
@@ -76,7 +76,7 @@
             <div class="space-y-1.5">
                 <label for="username" class="text-sm font-bold text-primary tracking-wide block">Username atau Email</label>
                 <div class="relative glow-effect rounded-lg">
-                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">person</span>
+                    <i class="fa-solid fa-user absolute left-3 top-1/2 -translate-y-1/2 text-outline"></i>
                     <input 
                         type="text" 
                         name="username" 
@@ -95,7 +95,7 @@
                     <label for="password" class="text-sm font-bold text-primary tracking-wide block">Password</label>
                 </div>
                 <div class="relative glow-effect rounded-lg">
-                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">lock</span>
+                    <i class="fa-solid fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-outline"></i>
                     <input 
                         type="password" 
                         name="password" 
@@ -110,7 +110,7 @@
                         class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors flex items-center justify-center p-1 rounded-md"
                         title="Tampilkan password"
                     >
-                        <span class="material-symbols-outlined" id="eye-icon">visibility</span>
+                        <i class="fa-solid fa-eye" id="eye-icon"></i>
                     </button>
                 </div>
             </div>
@@ -122,7 +122,7 @@
                 id="btn-submit"
             >
                 Masuk Halaman Admin
-                <span class="material-symbols-outlined text-lg">login</span>
+                <i class="fa-solid fa-sign-in-alt text-lg"></i>
             </button>
         </form>
 
@@ -133,7 +133,7 @@
                 class="inline-flex items-center gap-1.5 text-sm font-bold text-secondary hover:text-primary transition-colors duration-200"
                 id="link-portal"
             >
-                <span class="material-symbols-outlined text-lg">arrow_back</span>
+                <i class="fa-solid fa-arrow-left text-lg"></i>
                 Kembali ke Portal Publik
             </a>
         </div>

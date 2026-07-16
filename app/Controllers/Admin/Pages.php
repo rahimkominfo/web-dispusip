@@ -17,10 +17,22 @@ class Pages extends BaseController
 
     public function index()
     {
-        $pages = $this->pagesModel->orderBy('created_at', 'DESC')->findAll();
+        $cari = $this->request->getGet('cari');
+
+        if (!empty($cari)) {
+            $this->pagesModel->groupStart()
+                             ->like('judul', $cari)
+                             ->orLike('konten', $cari)
+                             ->orLike('slug', $cari)
+                             ->groupEnd();
+        }
+
+        $pages = $this->pagesModel->orderBy('created_at', 'DESC')->paginate(10, 'default');
 
         $data = [
-            'pages' => $pages
+            'pages' => $pages,
+            'pager' => $this->pagesModel->pager,
+            'cari'  => $cari
         ];
 
         return view('admin/pages/index', $data);

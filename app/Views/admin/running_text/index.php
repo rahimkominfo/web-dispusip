@@ -6,17 +6,17 @@
 <div class="mb-8 flex justify-between items-center flex-wrap gap-4">
     <div>
         <div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mb-2">
-            <span class="material-symbols-outlined text-sm" data-icon="home">home</span>
+            <i class="fa-solid fa-house text-sm"></i>
             <span>Dashboard</span>
-            <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+            <i class="fa-solid fa-chevron-right text-sm"></i>
             <span>Halaman & Tampilan</span>
-            <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+            <i class="fa-solid fa-chevron-right text-sm"></i>
             <span class="font-bold text-primary">Running Text</span>
         </div>
         <h2 class="font-headline-lg text-headline-lg text-primary">Running Text (Teks Berjalan)</h2>
     </div>
     <a href="<?= base_url('admin/running-text/create') ?>" class="bg-primary text-on-primary hover:bg-surface-tint rounded px-4 py-2 font-label-md text-label-md font-semibold flex items-center gap-2 transition-colors">
-        <span class="material-symbols-outlined text-sm">add</span> Tambah Teks
+        <i class="fa-solid fa-plus text-sm"></i> Tambah Teks
     </a>
 </div>
 
@@ -60,10 +60,10 @@
                             <td class="p-4 py-3 text-right">
                                 <div class="flex items-center justify-end gap-2">
                                     <a href="<?= base_url('admin/running-text/edit/' . $text['id']) ?>" class="p-1 text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-container" title="Edit">
-                                        <span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+                                        <i class="fa-solid fa-pen text-[20px]"></i>
                                     </a>
                                     <a href="<?= base_url('admin/running-text/delete/' . $text['id']) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus running text ini?')" class="p-1 text-on-surface-variant hover:text-error transition-colors rounded hover:bg-error-container" title="Hapus">
-                                        <span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+                                        <i class="fa-solid fa-trash text-[20px]"></i>
                                     </a>
                                 </div>
                             </td>

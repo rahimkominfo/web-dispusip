@@ -1,22 +1,22 @@
 <?= $this->extend('layouts/admin') ?>
 
-<?= $this->section('title') ?>Media Library<?= $this->endSection() ?>
+<?= $this->section('title') ?>Media<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <div class="mb-8 flex justify-between items-center flex-wrap gap-4">
     <div>
         <div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mb-2">
-            <span class="material-symbols-outlined text-sm" data-icon="home">home</span>
+            <i class="fa-solid fa-house text-sm"></i>
             <span>Dashboard</span>
-            <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+            <i class="fa-solid fa-chevron-right text-sm"></i>
             <span>Media & Galeri</span>
-            <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
-            <span class="font-bold text-primary">Media Library</span>
+            <i class="fa-solid fa-chevron-right text-sm"></i>
+            <span class="font-bold text-primary">Media</span>
         </div>
-        <h2 class="font-headline-lg text-headline-lg text-primary">Media Library</h2>
+        <h2 class="font-headline-lg text-headline-lg text-primary">Media</h2>
     </div>
     <a href="<?= base_url('admin/media/create') ?>" class="bg-primary text-on-primary hover:bg-surface-tint rounded px-4 py-2 font-label-md text-label-md font-semibold flex items-center gap-2 transition-colors">
-        <span class="material-symbols-outlined text-sm">upload</span> Unggah Berkas
+        <i class="fa-solid fa-upload text-sm"></i> Unggah Berkas
     </a>
 </div>
 
@@ -28,6 +28,29 @@
 <?php endif; ?>
 
 <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+    <!-- Search & Filter Toolbar -->
+    <div class="p-4 border-b border-outline-variant bg-surface-container-low flex flex-col sm:flex-row justify-between items-center gap-4">
+        <form method="GET" action="<?= base_url('admin/media') ?>" class="flex items-center gap-2 w-full sm:w-auto max-w-md">
+            <div class="relative flex-grow">
+                <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]"></i>
+                <input type="text" name="cari" value="<?= esc($cari ?? '') ?>" placeholder="Cari media..." class="w-full sm:w-80 bg-surface-container-lowest border border-outline-variant rounded pl-10 pr-3 py-2 text-on-surface focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 focus:outline-none transition-shadow text-sm"/>
+            </div>
+            <button type="submit" class="bg-primary text-on-primary hover:bg-surface-tint rounded px-4 py-2 font-label-md text-label-md font-semibold transition-colors flex items-center gap-1">
+                Cari
+            </button>
+            <?php if (!empty($cari)): ?>
+                <a href="<?= base_url('admin/media') ?>" class="border border-outline text-on-surface-variant hover:bg-surface-container-low rounded px-4 py-2 font-label-md text-label-md font-semibold transition-colors flex items-center justify-center">
+                    Reset
+                </a>
+            <?php endif; ?>
+        </form>
+        <?php if (!empty($cari)): ?>
+            <div class="text-xs text-on-surface-variant bg-surface-container-high px-3 py-1 rounded">
+                Ditemukan <span class="font-bold"><?= $pager->getTotal('default') ?></span> hasil pencarian
+            </div>
+        <?php endif; ?>
+    </div>
+
     <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
             <thead>
@@ -54,12 +77,12 @@
                                     <img src="<?= esc($item['url_file']) ?>" alt="<?= esc($item['nama_file']) ?>" class="w-16 h-12 object-cover rounded border border-outline-variant shadow-sm" onerror="this.src='<?= base_url('img/logo.png') ?>'; this.className='w-10 h-10 object-contain';"/>
                                 <?php elseif ($isPdf): ?>
                                     <div class="w-16 h-12 bg-red-50 text-red-500 rounded border border-red-200 flex flex-col items-center justify-center shadow-sm">
-                                        <span class="material-symbols-outlined text-[24px]">picture_as_pdf</span>
+                                        <i class="fa-solid fa-file-pdf text-[24px]"></i>
                                         <span class="text-[8px] font-bold uppercase">PDF</span>
                                     </div>
                                 <?php else: ?>
                                     <div class="w-16 h-12 bg-surface-container text-on-surface-variant rounded border border-outline-variant flex flex-col items-center justify-center shadow-sm">
-                                        <span class="material-symbols-outlined text-[24px]">draft</span>
+                                        <i class="fa-solid fa-file text-[24px]"></i>
                                         <span class="text-[8px] font-bold uppercase">FILE</span>
                                     </div>
                                 <?php endif; ?>
@@ -81,13 +104,13 @@
                             <td class="p-4 py-3 text-right">
                                 <div class="flex items-center justify-end gap-2">
                                     <button onclick="copyToClipboard('<?= esc($item['url_file']) ?>')" class="p-1 text-on-surface-variant hover:text-secondary transition-colors rounded hover:bg-surface-container" title="Salin URL">
-                                        <span class="material-symbols-outlined text-[20px]">content_copy</span>
+                                        <i class="fa-solid fa-copy text-[20px]"></i>
                                     </button>
                                     <a href="<?= base_url('admin/media/edit/' . $item['media_id']) ?>" class="p-1 text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-container" title="Edit">
-                                        <span class="material-symbols-outlined text-[20px]">edit</span>
+                                        <i class="fa-solid fa-pen text-[20px]"></i>
                                     </a>
                                     <a href="<?= base_url('admin/media/delete/' . $item['media_id']) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus berkas media ini secara permanen dari server?')" class="p-1 text-on-surface-variant hover:text-error transition-colors rounded hover:bg-error-container" title="Hapus">
-                                        <span class="material-symbols-outlined text-[20px]">delete</span>
+                                        <i class="fa-solid fa-trash text-[20px]"></i>
                                     </a>
                                 </div>
                             </td>
@@ -101,6 +124,18 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Pagination Footer -->
+    <?php if (isset($pager) && $pager->getPageCount() > 1): ?>
+        <div class="p-4 border-t border-outline-variant bg-surface-container-low flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-xs text-on-surface-variant">
+                Menampilkan halaman <?= $pager->getCurrentPage('default') ?> dari <?= $pager->getPageCount('default') ?> (Total <?= $pager->getTotal('default') ?> media)
+            </div>
+            <div>
+                <?= $pager->only(['cari'])->links('default', 'default_full') ?>
+            </div>
+        </div>
+    <?php endif; ?>
 </div>
 
 <script>

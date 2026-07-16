@@ -5,11 +5,11 @@
 <?= $this->section('content') ?>
 <div class="mb-8">
     <div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mb-2">
-        <span class="material-symbols-outlined text-sm" data-icon="home">home</span>
+        <i class="fa-solid fa-house text-sm"></i>
         <span>Dashboard</span>
-        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-sm"></i>
         <span>Manajemen Konten</span>
-        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-sm"></i>
         <span class="font-bold text-primary">Comments</span>
     </div>
     <h2 class="font-headline-lg text-headline-lg text-primary">Moderasi Komentar Pengunjung</h2>
@@ -60,7 +60,7 @@
                             <td class="p-4 py-3">
                                 <?php if ($item['komentar_induk_id']): ?>
                                     <div class="text-xs text-on-surface-variant font-medium mb-1 flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-xs">reply</span>
+                                        <i class="fa-solid fa-reply text-xs"></i>
                                         <span>Membalas komentar ID #<?= esc($item['komentar_induk_id']) ?></span>
                                     </div>
                                 <?php endif; ?>
@@ -71,7 +71,7 @@
                                     <form action="<?= base_url('admin/comments/reply/' . $item['komentar_id']) ?>" method="POST" class="flex flex-col gap-2">
                                         <?= csrf_field() ?>
                                         <label class="text-xs font-bold text-primary flex items-center gap-1">
-                                            <span class="material-symbols-outlined text-sm">reply</span> Balas Komentar <?= esc($item['nama_pengunjung']) ?>:
+                                            <i class="fa-solid fa-reply text-sm"></i> Balas Komentar <?= esc($item['nama_pengunjung']) ?>:
                                         </label>
                                         <textarea required name="reply_content" rows="2" class="w-full text-sm bg-surface-container-lowest border border-outline-variant rounded p-2 focus:outline-none focus:ring-1 focus:ring-primary-container" placeholder="Tulis balasan admin..."></textarea>
                                         <div class="flex gap-2 justify-end">
@@ -104,22 +104,22 @@
                                 <div class="flex items-center justify-end gap-1">
                                     <?php if ($item['status'] !== 'Disetujui'): ?>
                                         <a href="<?= base_url('admin/comments/approve/' . $item['komentar_id']) ?>" class="p-1 text-[#137333] hover:bg-[#E6F4EA] rounded transition-colors" title="Setujui">
-                                            <span class="material-symbols-outlined text-[20px]">check_circle</span>
+                                            <i class="fa-solid fa-check-circle text-[20px]"></i>
                                         </a>
                                     <?php endif; ?>
                                     <?php if ($item['status'] !== 'Spam'): ?>
                                         <a href="<?= base_url('admin/comments/spam/' . $item['komentar_id']) ?>" class="p-1 text-[#C5221F] hover:bg-[#FCE8E6] rounded transition-colors" title="Tandai Spam">
-                                            <span class="material-symbols-outlined text-[20px]">report</span>
+                                            <i class="fa-solid fa-triangle-exclamation text-[20px]"></i>
                                         </a>
                                     <?php endif; ?>
                                     <button onclick="toggleReply(<?= $item['komentar_id'] ?>)" class="p-1 text-primary hover:bg-surface-container rounded transition-colors" title="Balas">
-                                        <span class="material-symbols-outlined text-[20px]">reply</span>
+                                        <i class="fa-solid fa-reply text-[20px]"></i>
                                     </button>
                                     <a href="<?= base_url('admin/comments/edit/' . $item['komentar_id']) ?>" class="p-1 text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-container" title="Edit">
-                                        <span class="material-symbols-outlined text-[20px]">edit</span>
+                                        <i class="fa-solid fa-pen text-[20px]"></i>
                                     </a>
                                     <a href="<?= base_url('admin/comments/delete/' . $item['komentar_id']) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus komentar ini beserta seluruh balasannya?')" class="p-1 text-on-surface-variant hover:text-error transition-colors rounded hover:bg-error-container" title="Hapus">
-                                        <span class="material-symbols-outlined text-[20px]">delete</span>
+                                        <i class="fa-solid fa-trash text-[20px]"></i>
                                     </a>
                                 </div>
                             </td>

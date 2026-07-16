@@ -6,13 +6,13 @@
 <!-- Breadcrumb -->
 <nav aria-label="Breadcrumb" class="mb-8 font-label-md text-label-md text-on-surface-variant flex items-center gap-2 flex-wrap">
     <a class="hover:text-primary transition-colors" href="<?= base_url('/') ?>">Beranda</a>
-    <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+    <i class="fa-solid fa-chevron-right text-[16px]"></i>
     <a class="hover:text-primary transition-colors" href="<?= base_url('berita') ?>">Berita</a>
     <?php if ($category): ?>
-        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-[16px]"></i>
         <a class="hover:text-primary transition-colors" href="<?= base_url('berita?kategori=' . $category['slug']) ?>"><?= esc($category['nama']) ?></a>
     <?php endif; ?>
-    <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+    <i class="fa-solid fa-chevron-right text-[16px]"></i>
     <span aria-current="page" class="text-on-surface font-medium"><?= esc($article['judul']) ?></span>
 </nav>
 
@@ -23,21 +23,21 @@
             <h1 class="font-display text-display text-on-surface"><?= esc($article['judul']) ?></h1>
             <div class="flex flex-wrap items-center gap-4 text-on-surface-variant font-caption text-caption border-b border-outline-variant pb-4">
                 <div class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                    <i class="fa-solid fa-calendar text-[16px]"></i>
                     <?= date('d F Y', strtotime($article['tanggal_publikasi'])) ?>
                 </div>
                 <div class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-[16px]">person</span>
+                    <i class="fa-solid fa-user text-[16px]"></i>
                     By <?= esc($article['author_name'] ?? 'Admin') ?>
                 </div>
                 <?php if ($category): ?>
                     <div class="flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[16px]">folder</span>
+                        <i class="fa-solid fa-folder text-[16px]"></i>
                         <?= esc($category['nama']) ?>
                     </div>
                 <?php endif; ?>
                 <div class="flex items-center gap-1">
-                    <span class="material-symbols-outlined text-[16px]">visibility</span>
+                    <i class="fa-solid fa-eye text-[16px]"></i>
                     <?= number_format($article['jumlah_tayang']) ?> Kali Dibaca
                 </div>
             </div>
@@ -76,7 +76,7 @@
         <!-- Comments Section -->
         <section class="mt-8 bg-surface-container-lowest p-6 rounded-lg border border-outline-variant">
             <h3 class="font-title-lg text-title-lg text-on-surface mb-6 flex items-center gap-2">
-                <span class="material-symbols-outlined">forum</span>
+                <i class="fa-solid fa-comments"></i>
                 <?= count($parent_comments) + count($replies, COUNT_RECURSIVE) - count($replies) ?> Komentar
             </h3>
             
@@ -163,7 +163,7 @@
         <div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden shadow-sm">
             <div class="bg-surface-container-high px-4 py-3 border-b-2 border-secondary">
                 <h3 class="font-title-lg text-title-lg text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-secondary" data-icon="feed">feed</span>
+                    <i class="fa-solid fa-rss text-secondary"></i>
                     Berita Terkait
                 </h3>
             </div>
@@ -185,7 +185,7 @@
         <div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden shadow-sm">
             <div class="bg-surface-container-high px-4 py-3 border-b-2 border-secondary">
                 <h3 class="font-title-lg text-title-lg text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-secondary" data-icon="new_releases">new_releases</span>
+                    <i class="fa-solid fa-certificate text-secondary"></i>
                     Berita Terbaru
                 </h3>
             </div>
@@ -207,7 +207,7 @@
         <div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden shadow-sm">
             <div class="bg-surface-container-high px-4 py-3 border-b-2 border-secondary">
                 <h3 class="font-title-lg text-title-lg text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-secondary" data-icon="trending_up">trending_up</span>
+                    <i class="fa-solid fa-chart-line text-secondary"></i>
                     Berita Terpopuler
                 </h3>
             </div>

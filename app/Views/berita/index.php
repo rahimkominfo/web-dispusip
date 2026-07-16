@@ -6,7 +6,7 @@
 <!-- Breadcrumb -->
 <nav aria-label="Breadcrumb" class="text-on-surface-variant font-caption text-caption flex items-center gap-2 mb-6">
     <a class="hover:text-primary underline-offset-2 hover:underline" href="<?= base_url('/') ?>">Beranda</a>
-    <span class="material-symbols-outlined text-sm">chevron_right</span>
+    <i class="fa-solid fa-chevron-right text-sm"></i>
     <span aria-current="page" class="font-medium text-on-surface">Berita &amp; Artikel</span>
 </nav>
 
@@ -50,7 +50,7 @@
                                 <img alt="<?= esc($artikel['judul']) ?>" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="<?= esc($artikel['gambar_utama']) ?>"/>
                             <?php else: ?>
                                 <div class="absolute inset-0 w-full h-full bg-surface-container-high flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-4xl text-outline">image</span>
+                                    <i class="fa-solid fa-image text-4xl text-outline"></i>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -58,9 +58,9 @@
                             <div class="flex items-center gap-2 mb-2 font-caption text-caption text-on-surface-variant flex-wrap">
                                 <span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded font-medium">Berita</span>
                                 <span>•</span>
-                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span> <?= date('d M Y', strtotime($artikel['tanggal_publikasi'])) ?></span>
+                                <span class="flex items-center gap-1"><i class="fa-solid fa-calendar text-[14px]"></i> <?= date('d M Y', strtotime($artikel['tanggal_publikasi'])) ?></span>
                                 <span>•</span>
-                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">person</span> <?= esc($artikel['author_name'] ?? 'Admin') ?></span>
+                                <span class="flex items-center gap-1"><i class="fa-solid fa-user text-[14px]"></i> <?= esc($artikel['author_name'] ?? 'Admin') ?></span>
                             </div>
                             <h2 class="font-title-lg text-title-lg text-primary mb-2 group-hover:text-surface-tint transition-colors line-clamp-2">
                                 <a href="<?= base_url('berita/' . $artikel['slug']) ?>"><?= esc($artikel['judul']) ?></a>
@@ -68,7 +68,7 @@
                             <p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2"><?= esc($artikel['abstrak'] ?? strip_tags($artikel['konten'])) ?></p>
                             <div class="mt-auto">
                                 <a class="inline-flex items-center gap-1 font-label-md text-label-md text-surface-tint font-semibold hover:text-primary transition-colors" href="<?= base_url('berita/' . $artikel['slug']) ?>">
-                                    Selengkapnya <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+                                    Selengkapnya <i class="fa-solid fa-arrow-right text-sm transition-transform group-hover:translate-x-1"></i>
                                 </a>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <div class="text-center py-12 bg-surface-container-lowest border border-outline-variant rounded shadow-sm text-on-surface-variant">
-                    <span class="material-symbols-outlined text-4xl mb-2">search_off</span>
+                    <i class="fa-solid fa-search-minus text-4xl mb-2"></i>
                     <p>Tidak ada berita ditemukan.</p>
                 </div>
             <?php endif; ?>
@@ -95,7 +95,7 @@
         <!-- Search Widget -->
         <div class="bg-surface-container-low border-t-2 border-secondary rounded p-5 shadow-sm">
             <h3 class="font-title-lg text-title-lg text-primary font-bold mb-4 flex items-center gap-2">
-                <span class="material-symbols-outlined text-secondary">search</span> Pencarian
+                <i class="fa-solid fa-search text-secondary"></i> Pencarian
             </h3>
             <form action="<?= base_url('berita') ?>" method="GET" class="flex flex-col gap-3">
                 <?php if (!empty($kategori_slug)): ?>
@@ -106,7 +106,7 @@
                 <?php endif; ?>
                 <input name="cari" value="<?= esc($cari) ?>" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-3 py-2 text-sm focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-outline" placeholder="Masukkan kata kunci..." type="text"/>
                 <button class="bg-primary text-on-primary rounded py-2 px-4 font-label-md text-label-md font-semibold hover:bg-surface-tint transition-colors flex justify-center items-center gap-2" type="submit">
-                    Cari <span class="material-symbols-outlined text-sm">search</span>
+                    Cari <i class="fa-solid fa-search text-sm"></i>
                 </button>
             </form>
         </div>
@@ -114,7 +114,7 @@
         <!-- Categories Widget -->
         <div class="bg-surface-container-low border-t-2 border-secondary rounded p-5 shadow-sm">
             <h3 class="font-title-lg text-title-lg text-primary font-bold mb-4 flex items-center gap-2">
-                <span class="material-symbols-outlined text-secondary">category</span> Kategori
+                <i class="fa-solid fa-list text-secondary"></i> Kategori
             </h3>
             <ul class="flex flex-col gap-2 font-body-md text-body-md">
                 <?php foreach ($categories as $cat): ?>
@@ -131,7 +131,7 @@
         <!-- Popular Tags Widget -->
         <div class="bg-surface-container-low border-t-2 border-secondary rounded p-5 shadow-sm">
             <h3 class="font-title-lg text-title-lg text-primary font-bold mb-4 flex items-center gap-2">
-                <span class="material-symbols-outlined text-secondary">label</span> Tag Populer
+                <i class="fa-solid fa-tag text-secondary"></i> Tag Populer
             </h3>
             <div class="flex flex-wrap gap-2">
                 <?php foreach ($tags as $tag): ?>
@@ -143,7 +143,7 @@
         <!-- Popular Articles Widget -->
         <div class="bg-surface-container-low border-t-2 border-secondary rounded p-5 shadow-sm">
             <h3 class="font-title-lg text-title-lg text-primary font-bold mb-4 flex items-center gap-2">
-                <span class="material-symbols-outlined text-secondary">trending_up</span> Artikel Terpopuler
+                <i class="fa-solid fa-chart-line text-secondary"></i> Artikel Terpopuler
             </h3>
             <div class="flex flex-col gap-4">
                 <?php foreach ($popular_articles as $pop): ?>
@@ -153,14 +153,14 @@
                                 <img alt="" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" src="<?= esc($pop['gambar_utama']) ?>"/>
                             <?php else: ?>
                                 <div class="w-full h-full flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-xl text-outline">image</span>
+                                    <i class="fa-solid fa-image text-xl text-outline"></i>
                                 </div>
                             <?php endif; ?>
                         </div>
                         <div>
                             <h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2"><?= esc($pop['judul']) ?></h4>
                             <span class="font-caption text-caption text-on-surface-variant flex items-center gap-1 mt-1">
-                                <span class="material-symbols-outlined text-[12px]">visibility</span> <?= number_format($pop['jumlah_tayang']) ?> kali dibaca
+                                <i class="fa-solid fa-eye text-[12px]"></i> <?= number_format($pop['jumlah_tayang']) ?> kali dibaca
                             </span>
                         </div>
                     </a>

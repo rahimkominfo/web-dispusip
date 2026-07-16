@@ -31,7 +31,7 @@
                         <p class="text-gray-100 text-sm line-clamp-2 mb-2 leading-relaxed" style="text-shadow: 1px 1px 4px rgba(0,0,0,1);"><?= esc($gallery['deskripsi']) ?></p>
                     <?php endif; ?>
                     <p class="text-primary-container text-xs flex items-center gap-1.5 font-bold uppercase tracking-wider pt-1" style="text-shadow: 1px 1px 3px rgba(0,0,0,1);">
-                        <span class="material-symbols-outlined text-[16px]">photo_library</span> <?= count($gallery['photos']) ?> Foto Tersedia
+                        <i class="fa-solid fa-images text-[16px]"></i> <?= count($gallery['photos']) ?> Foto Tersedia
                     </p>
                 </div>
             </div>
@@ -41,7 +41,7 @@
     <!-- Empty State -->
     <div class="w-full max-w-2xl mx-auto text-center py-20 bg-surface-container-lowest rounded-[2rem] border-2 border-dashed border-outline-variant">
         <div class="w-24 h-24 bg-surface-container rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-            <span class="material-symbols-outlined text-[48px] text-outline">collections</span>
+            <i class="fa-solid fa-folder-open text-[48px] text-outline"></i>
         </div>
         <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3 font-bold">Belum ada Galeri</h3>
         <p class="font-body-lg text-on-surface-variant text-lg">
@@ -54,7 +54,7 @@
 <div id="galleryModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300">
     <!-- Close Button -->
     <button onclick="closeGalleryModal()" class="absolute top-4 right-4 z-[110] w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors">
-        <span class="material-symbols-outlined text-3xl">close</span>
+        <i class="fa-solid fa-times text-3xl"></i>
     </button>
     
     <!-- Modal Header -->
@@ -69,10 +69,10 @@
         
         <!-- Navigation -->
         <button id="galleryPrevBtn" class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/60 hover:bg-primary text-white rounded-full flex items-center justify-center transition-all disabled:opacity-30 disabled:pointer-events-none">
-            <span class="material-symbols-outlined text-2xl md:text-4xl">chevron_left</span>
+            <i class="fa-solid fa-chevron-left text-2xl md:text-4xl"></i>
         </button>
         <button id="galleryNextBtn" class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/60 hover:bg-primary text-white rounded-full flex items-center justify-center transition-all disabled:opacity-30 disabled:pointer-events-none">
-            <span class="material-symbols-outlined text-2xl md:text-4xl">chevron_right</span>
+            <i class="fa-solid fa-chevron-right text-2xl md:text-4xl"></i>
         </button>
     </div>
     

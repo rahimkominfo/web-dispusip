@@ -6,7 +6,7 @@
 <!-- Breadcrumb -->
 <nav aria-label="Breadcrumb" class="mb-8 font-label-md text-label-md text-on-surface-variant flex items-center gap-2 flex-wrap">
     <a class="hover:text-primary transition-colors" href="<?= base_url('/') ?>">Beranda</a>
-    <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+    <i class="fa-solid fa-chevron-right text-[16px]"></i>
     <span aria-current="page" class="text-on-surface font-medium"><?= esc($page['judul']) ?></span>
 </nav>
 

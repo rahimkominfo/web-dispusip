@@ -19,14 +19,26 @@ class Media extends BaseController
 
     public function index()
     {
-        // Join with sys_users to display uploader's name
-        $media = $this->mediaModel->select('mst_media.*, sys_users.nama_publik as uploader')
-                                  ->join('sys_users', 'sys_users.user_id = mst_media.user_id', 'left')
-                                  ->orderBy('mst_media.created_at', 'DESC')
-                                  ->findAll();
+        $cari = $this->request->getGet('cari');
+
+        $this->mediaModel->select('mst_media.*, sys_users.nama_publik as uploader')
+                         ->join('sys_users', 'sys_users.user_id = mst_media.user_id', 'left');
+
+        if (!empty($cari)) {
+            $this->mediaModel->groupStart()
+                             ->like('mst_media.nama_file', $cari)
+                             ->orLike('mst_media.caption', $cari)
+                             ->orLike('mst_media.tipe_file', $cari)
+                             ->orLike('sys_users.nama_publik', $cari)
+                             ->groupEnd();
+        }
+
+        $media = $this->mediaModel->orderBy('mst_media.created_at', 'DESC')->paginate(10, 'default');
 
         $data = [
-            'media' => $media
+            'media' => $media,
+            'pager' => $this->mediaModel->pager,
+            'cari'  => $cari
         ];
 
         return view('admin/media/index', $data);

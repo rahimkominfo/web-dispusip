@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Public+Sans:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     
     <style <?= csp_style_nonce() ?>>
         .material-symbols-outlined {
@@ -38,84 +37,84 @@ $inactiveClass = "flex items-center gap-3 text-on-surface-variant px-4 py-3 hove
         <ul class="space-y-2">
             <li>
                 <a class="<?= url_is('admin') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin') ?>">
-                    <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    <i class="fa-solid fa-gauge"></i>
                     Dashboard
                 </a>
             </li>
             <li class="pt-4 pb-2 px-4 font-label-md text-label-md font-bold text-on-surface-variant uppercase tracking-wider">Manajemen Konten</li>
             <li>
                 <a class="<?= url_is('admin/news*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/news') ?>">
-                    <span class="material-symbols-outlined" data-icon="article">article</span>
-                    News
+                    <i class="fa-solid fa-file-lines"></i>
+                    Berita
                 </a>
             </li>
             <li>
                 <a class="<?= url_is('admin/categories*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/categories') ?>">
-                    <span class="material-symbols-outlined" data-icon="category">category</span>
-                    Categories
+                    <i class="fa-solid fa-list"></i>
+                    Kategori
                 </a>
             </li>
             <li>
                 <a class="<?= url_is('admin/tags*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/tags') ?>">
-                    <span class="material-symbols-outlined" data-icon="tag">tag</span>
+                    <i class="fa-solid fa-hashtag"></i>
                     Tags
                 </a>
             </li>
             <li>
                 <a class="<?= url_is('admin/comments*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/comments') ?>">
-                    <span class="material-symbols-outlined" data-icon="forum">forum</span>
-                    Comments
+                    <i class="fa-solid fa-comments"></i>
+                    Komentar
                 </a>
             </li>
             <li class="pt-4 pb-2 px-4 font-label-md text-label-md font-bold text-on-surface-variant uppercase tracking-wider">Halaman &amp; Tampilan</li>
             <li>
                 <a class="<?= url_is('admin/pages*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/pages') ?>">
-                    <span class="material-symbols-outlined" data-icon="web">web</span>
-                    Static Pages
+                    <i class="fa-solid fa-globe"></i>
+                    Halaman Statis
                 </a>
             </li>
             <li>
                 <a class="<?= url_is('admin/menus*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/menus') ?>">
-                    <span class="material-symbols-outlined" data-icon="menu">menu</span>
-                    Menu Management
+                    <i class="fa-solid fa-bars"></i>
+                    Manajemen Menu
                 </a>
             </li>
             <li>
                 <a class="<?= url_is('admin/flyers*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/flyers') ?>">
-                    <span class="material-symbols-outlined" data-icon="view_carousel">view_carousel</span>
+                    <i class="fa-solid fa-images"></i>
                     Banner/Flyer
                 </a>
             </li>
             <li>
                 <a class="<?= url_is('admin/running-text*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/running-text') ?>">
-                    <span class="material-symbols-outlined" data-icon="linear_scale">linear_scale</span>
+                    <i class="fa-solid fa-ellipsis-h"></i>
                     Running Text
                 </a>
             </li>
             <li class="pt-4 pb-2 px-4 font-label-md text-label-md font-bold text-on-surface-variant uppercase tracking-wider">Media &amp; Galeri</li>
             <li>
                 <a class="<?= url_is('admin/media*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/media') ?>">
-                    <span class="material-symbols-outlined" data-icon="perm_media">perm_media</span>
-                    Media Library
+                    <i class="fa-solid fa-photo-film"></i>
+                    Media
                 </a>
             </li>
             <li>
                 <a class="<?= url_is('admin/gallery*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/gallery') ?>">
-                    <span class="material-symbols-outlined" data-icon="collections">collections</span>
-                    Event Gallery
+                    <i class="fa-solid fa-folder-open"></i>
+                    Galeri
                 </a>
             </li>
             <li class="pt-4 pb-2 px-4 font-label-md text-label-md font-bold text-on-surface-variant uppercase tracking-wider">Pengguna &amp; Sistem</li>
             <li>
                 <a class="<?= url_is('admin/users*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/users') ?>">
-                    <span class="material-symbols-outlined" data-icon="manage_accounts">manage_accounts</span>
-                    User Management
+                    <i class="fa-solid fa-user-gear"></i>
+                    Manajemen Pengguna
                 </a>
             </li>
             <li>
                 <a class="<?= url_is('admin/roles*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/roles') ?>">
-                    <span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
-                    Roles
+                    <i class="fa-solid fa-user-shield"></i>
+                    Peran
                 </a>
             </li>
 
@@ -123,11 +122,11 @@ $inactiveClass = "flex items-center gap-3 text-on-surface-variant px-4 py-3 hove
     </div>
     <div class="px-gutter py-4 border-t border-outline-variant flex flex-col gap-1">
         <a class="flex items-center gap-3 text-on-surface-variant px-4 py-2.5 hover:bg-surface-container hover:bg-surface-container-high transition-all duration-150 font-label-md text-label-md rounded-lg" href="<?= base_url('/') ?>">
-            <span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+            <i class="fa-solid fa-external-link-alt"></i>
             Exit to Portal
         </a>
         <a class="flex items-center gap-3 text-error hover:bg-red-50 hover:text-on-error-container transition-all duration-150 font-label-md text-label-md rounded-lg font-bold" href="<?= base_url('logout') ?>">
-            <span class="material-symbols-outlined" data-icon="logout">logout</span>
+            <i class="fa-solid fa-sign-out-alt"></i>
             Keluar / Logout
         </a>
     </div>
@@ -139,7 +138,7 @@ $inactiveClass = "flex items-center gap-3 text-on-surface-variant px-4 py-3 hove
     <header class="docked full-width top-0 bg-primary shadow-sm fixed top-0 w-full z-50 flex justify-between items-center px-gutter h-[64px] md:w-[calc(100%-16rem)] right-0">
         <div class="flex items-center gap-4">
             <button class="text-on-primary md:hidden p-2">
-                <span class="material-symbols-outlined" data-icon="menu">menu</span>
+                <i class="fa-solid fa-bars"></i>
             </button>
             <!-- Brand on Mobile -->
             <a class="flex items-center gap-2 md:hidden" href="#">
@@ -155,14 +154,14 @@ $inactiveClass = "flex items-center gap-3 text-on-surface-variant px-4 py-3 hove
                 <?= esc(session()->get('nama_publik') ?? 'Admin') ?>
             </span>
             <button class="p-2 hover:text-secondary-fixed transition-colors duration-200 rounded-full relative">
-                <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+                <i class="fa-solid fa-bell"></i>
                 <span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
             </button>
             <a class="p-2 hover:text-secondary-fixed transition-colors duration-200 rounded-full flex items-center justify-center" href="<?= base_url('/') ?>" title="Exit to Portal">
-                <span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+                <i class="fa-solid fa-external-link-alt"></i>
             </a>
             <a class="p-2 hover:text-red-300 transition-colors duration-200 rounded-full flex items-center justify-center" href="<?= base_url('logout') ?>" title="Keluar / Logout">
-                <span class="material-symbols-outlined" data-icon="logout">logout</span>
+                <i class="fa-solid fa-sign-out-alt"></i>
             </a>
         </div>
     </header>
@@ -206,7 +205,16 @@ $inactiveClass = "flex items-center gap-3 text-on-surface-variant px-4 py-3 hove
         ImageResize,
         LinkImage,
         Link,
-        Base64UploadAdapter
+        Base64UploadAdapter,
+        List,
+        ListProperties,
+        TodoList,
+        Table,
+        TableToolbar,
+        TableProperties,
+        TableCellProperties,
+        TableCaption,
+        TableColumnResize
     } = CKEditorGlobal;
 
     function initEditor() {
@@ -222,19 +230,28 @@ $inactiveClass = "flex items-center gap-3 text-on-surface-variant px-4 py-3 hove
                     licenseKey: 'GPL',
                     plugins: [ 
                         Essentials, Paragraph, Bold, Italic, Font, Alignment,
-                        Image, ImageUpload, ImageToolbar, ImageCaption, ImageStyle, ImageResize, LinkImage, Link, Base64UploadAdapter
+                        Image, ImageUpload, ImageToolbar, ImageCaption, ImageStyle, ImageResize, LinkImage, Link, Base64UploadAdapter,
+                        List, ListProperties, TodoList,
+                        Table, TableToolbar, TableProperties, TableCellProperties, TableCaption, TableColumnResize
                     ],
                     toolbar: [
                         'undo', 'redo', '|', 'bold', 'italic', 'link', '|',
+                        'bulletedList', 'numberedList', 'todoList', '|',
                         'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
                         'alignment', '|',
-                        'uploadImage'
+                        'insertTable', 'uploadImage'
                     ],
                     image: {
                         toolbar: [
                             'imageTextAlternative', 'toggleImageCaption', '|',
                             'imageStyle:inline', 'imageStyle:block', 'imageStyle:side', '|',
                             'linkImage'
+                        ]
+                    },
+                    table: {
+                        contentToolbar: [
+                            'tableColumn', 'tableRow', 'mergeTableCells',
+                            'tableProperties', 'tableCellProperties', 'toggleTableCaption'
                         ]
                     }
                 })

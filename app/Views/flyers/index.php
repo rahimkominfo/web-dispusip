@@ -52,11 +52,11 @@
                     <!-- Actions -->
                     <div class="mt-auto pt-5 flex justify-between items-center border-t border-outline-variant/30">
                         <a href="<?= esc($flyer['gambar_url']) ?>" target="_blank" class="inline-flex items-center gap-1.5 text-sm font-label-lg text-primary hover:text-primary/80 transition-colors">
-                            <span class="material-symbols-outlined text-[20px]">zoom_in</span> 
+                            <i class="fa-solid fa-search-plus text-[20px]"></i> 
                             <span>Perbesar</span>
                         </a>
                         <a href="<?= esc($flyer['gambar_url']) ?>" download class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all duration-300 hover:scale-110 shadow-sm" title="Unduh Flyer">
-                            <span class="material-symbols-outlined text-[20px]">download</span>
+                            <i class="fa-solid fa-download text-[20px]"></i>
                         </a>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
     <!-- Empty State -->
     <div class="w-full max-w-2xl mx-auto text-center py-20 bg-surface-container-lowest rounded-[2rem] border-2 border-dashed border-outline-variant">
         <div class="w-24 h-24 bg-surface-container rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-            <span class="material-symbols-outlined text-[48px] text-outline">photo_library</span>
+            <i class="fa-solid fa-images text-[48px] text-outline"></i>
         </div>
         <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3 font-bold">Belum ada Flyer</h3>
         <p class="font-body-lg text-on-surface-variant text-lg">

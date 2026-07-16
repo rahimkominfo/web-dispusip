@@ -5,13 +5,13 @@
 <?= $this->section('content') ?>
 <div class="mb-8">
     <div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mb-2">
-        <span class="material-symbols-outlined text-sm" data-icon="home">home</span>
+        <i class="fa-solid fa-house text-sm"></i>
         <span>Dashboard</span>
-        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-sm"></i>
         <span>Manajemen Konten</span>
-        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-sm"></i>
         <a href="<?= base_url('admin/categories') ?>" class="hover:underline">Categories</a>
-        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-sm"></i>
         <span class="font-bold text-primary">Tambah</span>
     </div>
     <h2 class="font-headline-lg text-headline-lg text-primary">Tambah Kategori Baru</h2>
@@ -52,7 +52,7 @@
 
         <div class="flex items-center gap-3 pt-4 border-t border-outline-variant">
             <button type="submit" class="bg-primary text-on-primary hover:bg-surface-tint rounded px-6 py-2 font-label-md text-label-md font-semibold transition-colors flex items-center gap-2">
-                <span class="material-symbols-outlined text-sm">save</span> Simpan Kategori
+                <i class="fa-solid fa-save text-sm"></i> Simpan Kategori
             </button>
             <a href="<?= base_url('admin/categories') ?>" class="border border-outline text-on-surface-variant hover:bg-surface-container-low rounded px-6 py-2 font-label-md text-label-md font-semibold transition-colors">
                 Batal

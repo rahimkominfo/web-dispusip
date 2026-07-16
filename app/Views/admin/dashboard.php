@@ -6,9 +6,9 @@
 <!-- Breadcrumbs & Header -->
 <div class="mb-8">
     <div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mb-2">
-        <span class="material-symbols-outlined text-sm" data-icon="home">home</span>
+        <i class="fa-solid fa-house text-sm"></i>
         <span>Dashboard</span>
-        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-sm"></i>
         <span class="font-bold text-primary">Ringkasan</span>
     </div>
     <h2 class="font-headline-lg text-headline-lg text-primary">Selamat Datang, Administrator!</h2>
@@ -29,7 +29,7 @@
             <p class="font-display text-display text-primary"><?= esc($total_articles) ?></p>
         </div>
         <div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
-            <span class="material-symbols-outlined" data-icon="article">article</span>
+            <i class="fa-solid fa-file-lines"></i>
         </div>
     </div>
     <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
@@ -38,7 +38,7 @@
             <p class="font-display text-display text-secondary"><?= esc($total_pending_comments) ?></p>
         </div>
         <div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
-            <span class="material-symbols-outlined" data-icon="forum">forum</span>
+            <i class="fa-solid fa-comments"></i>
         </div>
     </div>
     <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
@@ -47,7 +47,7 @@
             <p class="font-display text-display text-tertiary-container"><?= esc($total_users) ?></p>
         </div>
         <div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary-container">
-            <span class="material-symbols-outlined" data-icon="group">group</span>
+            <i class="fa-solid fa-users"></i>
         </div>
     </div>
 </div>
@@ -130,10 +130,10 @@
                                 <td class="p-4 py-3 text-right">
                                     <div class="flex items-center justify-end gap-2">
                                         <a href="<?= base_url('admin/komentar/approve/' . $comment['komentar_id']) ?>" class="p-1 text-[#137333] hover:bg-[#E6F4EA] transition-colors rounded border border-transparent hover:border-[#137333]" title="Setujui">
-                                            <span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+                                            <i class="fa-solid fa-check-circle text-[20px]"></i>
                                         </a>
                                         <a href="<?= base_url('admin/komentar/spam/' . $comment['komentar_id']) ?>" class="p-1 text-error hover:bg-error-container transition-colors rounded border border-transparent hover:border-error" title="Tandai Spam">
-                                            <span class="material-symbols-outlined text-[20px]" data-icon="report">report</span>
+                                            <i class="fa-solid fa-triangle-exclamation text-[20px]"></i>
                                         </a>
                                     </div>
                                 </td>

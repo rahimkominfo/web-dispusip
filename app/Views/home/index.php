@@ -47,13 +47,13 @@
                                 <img class="w-full h-full object-cover" src="<?= esc($artikel['gambar_utama']) ?>" alt="<?= esc($artikel['judul']) ?>">
                             <?php else: ?>
                                 <div class="w-full h-full bg-surface-container-high flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-4xl text-outline">image</span>
+                                    <i class="fa-solid fa-image text-4xl text-outline"></i>
                                 </div>
                             <?php endif; ?>
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="text-caption text-outline font-caption mb-2 flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                <i class="fa-solid fa-calendar text-[14px]"></i>
                                 <?= date('d M Y', strtotime($artikel['tanggal_publikasi'])) ?>
                             </div>
                             <h3 class="font-title-lg text-title-lg text-primary mb-2 line-clamp-2 hover:text-surface-tint">
@@ -63,14 +63,14 @@
                                 <?= esc($artikel['abstrak'] ?? strip_tags($artikel['konten'])) ?>
                             </p>
                             <a class="mt-auto inline-flex items-center gap-1 font-semibold text-surface-tint hover:text-primary transition-colors" href="<?= base_url('berita/' . $artikel['slug']) ?>">
-                                Selengkapnya <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                Selengkapnya <i class="fa-solid fa-arrow-right text-sm"></i>
                             </a>
                         </div>
                     </article>
                 <?php endforeach; ?>
             <?php else: ?>
                 <div class="col-span-2 text-center py-12 text-on-surface-variant">
-                    <span class="material-symbols-outlined text-4xl mb-2">article</span>
+                    <i class="fa-solid fa-file-lines text-4xl mb-2"></i>
                     <p>Belum ada berita yang diterbitkan.</p>
                 </div>
             <?php endif; ?>
@@ -85,14 +85,14 @@
                 <div class="flex items-center gap-3">
                     <a href="<?= base_url('flyers') ?>" class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-lg text-label-lg hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm flex items-center gap-2 group">
                         Lihat Semua
-                        <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        <i class="fa-solid fa-arrow-right text-lg transition-transform group-hover:translate-x-1"></i>
                     </a>
                     <div class="flex items-center gap-2">
                         <button id="prev-flyer" class="w-11 h-11 rounded-full border border-outline-variant text-primary hover:bg-primary hover:text-on-primary hover:border-primary transition-all flex items-center justify-center disabled:opacity-30 disabled:pointer-events-none">
-                            <span class="material-symbols-outlined">chevron_left</span>
+                            <i class="fa-solid fa-chevron-left"></i>
                         </button>
                         <button id="next-flyer" class="w-11 h-11 rounded-full border border-outline-variant text-primary hover:bg-primary hover:text-on-primary hover:border-primary transition-all flex items-center justify-center disabled:opacity-30 disabled:pointer-events-none">
-                            <span class="material-symbols-outlined">chevron_right</span>
+                            <i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <div class="w-full text-center py-16 bg-surface-container-lowest rounded-2xl border-2 border-dashed border-outline-variant">
-                        <span class="material-symbols-outlined text-[56px] text-outline mb-3">web_stories</span>
+                        <i class="fa-solid fa-book-open text-[56px] text-outline mb-3"></i>
                         <p class="font-body-lg text-body-lg text-on-surface-variant">Belum ada media promosi yang dipublikasikan.</p>
                     </div>
                 <?php endif; ?>
@@ -129,7 +129,7 @@
             <div class="flex justify-between items-center border-b-2 border-primary pb-2 mb-6">
                 <h2 class="font-headline-lg text-headline-lg text-primary m-0">Galeri Kegiatan</h2>
                 <a href="<?= base_url('gallery') ?>" class="text-sm font-label-md text-primary hover:text-secondary-fixed transition-colors flex items-center gap-1">
-                    Lihat Semua <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    Lihat Semua <i class="fa-solid fa-arrow-right text-[18px]"></i>
                 </a>
             </div>
             
@@ -140,13 +140,13 @@
                             <img src="<?= esc($gallery['sampul_url']) ?>" alt="<?= esc($gallery['judul']) ?>" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-90 group-hover:opacity-100 flex flex-col justify-end p-4 transition-opacity">
                                 <h3 class="text-white font-title-sm font-bold text-shadow-sm line-clamp-2 leading-tight"><?= esc($gallery['judul']) ?></h3>
-                                <p class="text-white/80 text-xs mt-1.5 flex items-center gap-1.5 font-semibold"><span class="material-symbols-outlined text-[14px]">photo_library</span> <?= count($gallery['photos']) ?> Foto</p>
+                                <p class="text-white/80 text-xs mt-1.5 flex items-center gap-1.5 font-semibold"><i class="fa-solid fa-images text-[14px]"></i> <?= count($gallery['photos']) ?> Foto</p>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <div class="col-span-2 text-center py-10 bg-surface-container-lowest rounded-xl border border-dashed border-outline-variant">
-                        <span class="material-symbols-outlined text-[40px] text-outline mb-2">collections</span>
+                        <i class="fa-solid fa-folder-open text-[40px] text-outline mb-2"></i>
                         <p class="font-body-md text-on-surface-variant">Belum ada album galeri.</p>
                     </div>
                 <?php endif; ?>
@@ -192,7 +192,7 @@
 
         <div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant shadow-sm border-t-4 border-t-secondary flex flex-col items-center w-full">
             <h3 class="font-title-lg text-title-lg text-primary mb-3 font-bold w-full text-left border-b border-outline-variant pb-2 flex items-center gap-2">
-                <span class="material-symbols-outlined text-secondary">phone_in_talk</span>
+                <i class="fa-solid fa-phone text-secondary"></i>
                 Nomor Telepon Penting
             </h3>
             
@@ -321,7 +321,7 @@
 <div id="galleryModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300">
     <!-- Close Button -->
     <button onclick="closeGalleryModal()" class="absolute top-4 right-4 z-[110] w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors">
-        <span class="material-symbols-outlined text-3xl">close</span>
+        <i class="fa-solid fa-times text-3xl"></i>
     </button>
     
     <!-- Modal Header -->
@@ -336,10 +336,10 @@
         
         <!-- Navigation -->
         <button id="galleryPrevBtn" class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/60 hover:bg-primary text-white rounded-full flex items-center justify-center transition-all disabled:opacity-30 disabled:pointer-events-none">
-            <span class="material-symbols-outlined text-2xl md:text-4xl">chevron_left</span>
+            <i class="fa-solid fa-chevron-left text-2xl md:text-4xl"></i>
         </button>
         <button id="galleryNextBtn" class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/60 hover:bg-primary text-white rounded-full flex items-center justify-center transition-all disabled:opacity-30 disabled:pointer-events-none">
-            <span class="material-symbols-outlined text-2xl md:text-4xl">chevron_right</span>
+            <i class="fa-solid fa-chevron-right text-2xl md:text-4xl"></i>
         </button>
     </div>
     

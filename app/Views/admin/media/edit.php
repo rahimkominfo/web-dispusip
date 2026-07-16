@@ -5,13 +5,13 @@
 <?= $this->section('content') ?>
 <div class="mb-8">
     <div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mb-2">
-        <span class="material-symbols-outlined text-sm" data-icon="home">home</span>
+        <i class="fa-solid fa-house text-sm"></i>
         <span>Dashboard</span>
-        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-sm"></i>
         <span>Media & Galeri</span>
-        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-sm"></i>
         <a href="<?= base_url('admin/media') ?>" class="hover:underline">Media Library</a>
-        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-sm"></i>
         <span class="font-bold text-primary">Edit</span>
     </div>
     <h2 class="font-headline-lg text-headline-lg text-primary">Edit Media</h2>
@@ -44,12 +44,12 @@
                     <img src="<?= esc($media['url_file']) ?>" alt="Preview" class="w-20 h-20 object-cover rounded border border-outline shadow-sm" onerror="this.src='<?= base_url('img/logo.png') ?>'; this.className='w-16 h-16 object-contain';"/>
                 <?php elseif ($isPdf): ?>
                     <div class="w-20 h-20 bg-red-50 text-red-500 rounded border border-red-200 flex flex-col items-center justify-center shadow-sm">
-                        <span class="material-symbols-outlined text-[32px]">picture_as_pdf</span>
+                        <i class="fa-solid fa-file-pdf text-[32px]"></i>
                         <span class="text-[9px] font-bold uppercase mt-1">PDF Document</span>
                     </div>
                 <?php else: ?>
                     <div class="w-20 h-20 bg-surface-container-high text-on-surface-variant rounded border border-outline-variant flex flex-col items-center justify-center shadow-sm">
-                        <span class="material-symbols-outlined text-[32px]">draft</span>
+                        <i class="fa-solid fa-file text-[32px]"></i>
                         <span class="text-[9px] font-bold uppercase mt-1">File</span>
                     </div>
                 <?php endif; ?>
@@ -73,7 +73,7 @@
 
         <div class="flex items-center gap-3 pt-4 border-t border-outline-variant">
             <button type="submit" class="bg-primary text-on-primary hover:bg-surface-tint rounded px-6 py-2 font-label-md text-label-md font-semibold transition-colors flex items-center gap-2">
-                <span class="material-symbols-outlined text-sm">save</span> Perbarui Media
+                <i class="fa-solid fa-save text-sm"></i> Perbarui Media
             </button>
             <a href="<?= base_url('admin/media') ?>" class="border border-outline text-on-surface-variant hover:bg-surface-container-low rounded px-6 py-2 font-label-md text-label-md font-semibold transition-colors">
                 Batal

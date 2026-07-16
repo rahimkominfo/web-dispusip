@@ -23,18 +23,30 @@ class News extends BaseController
 
     public function index()
     {
-        // Join with users and compile category names using GROUP_CONCAT
-        $articles = $this->artikelModel->select('trn_artikel.*, sys_users.nama_publik as author_name, GROUP_CONCAT(mst_kategori.nama SEPARATOR ", ") as categories_list')
-                                       ->join('sys_users', 'sys_users.user_id = trn_artikel.user_id', 'left')
-                                       ->join('trn_artikel_kategori', 'trn_artikel_kategori.artikel_id = trn_artikel.artikel_id', 'left')
-                                       ->join('mst_kategori', 'mst_kategori.kategori_id = trn_artikel_kategori.kategori_id', 'left')
-                                       ->where('trn_artikel.deleted_at IS NULL')
-                                       ->groupBy('trn_artikel.artikel_id')
+        $cari = $this->request->getGet('cari');
+
+        $this->artikelModel->select('trn_artikel.*, sys_users.nama_publik as author_name, GROUP_CONCAT(mst_kategori.nama SEPARATOR ", ") as categories_list')
+                           ->join('sys_users', 'sys_users.user_id = trn_artikel.user_id', 'left')
+                           ->join('trn_artikel_kategori', 'trn_artikel_kategori.artikel_id = trn_artikel.artikel_id', 'left')
+                           ->join('mst_kategori', 'mst_kategori.kategori_id = trn_artikel_kategori.kategori_id', 'left')
+                           ->where('trn_artikel.deleted_at IS NULL');
+
+        if (!empty($cari)) {
+            $this->artikelModel->groupStart()
+                               ->like('trn_artikel.judul', $cari)
+                               ->orLike('trn_artikel.konten', $cari)
+                               ->orLike('trn_artikel.slug', $cari)
+                               ->groupEnd();
+        }
+
+        $articles = $this->artikelModel->groupBy('trn_artikel.artikel_id')
                                        ->orderBy('trn_artikel.tanggal_publikasi', 'DESC')
-                                       ->findAll();
+                                       ->paginate(10, 'default');
 
         $data = [
-            'articles' => $articles
+            'articles' => $articles,
+            'pager'    => $this->artikelModel->pager,
+            'cari'     => $cari
         ];
 
         return view('admin/news/index', $data);

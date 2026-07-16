@@ -5,13 +5,13 @@
 <?= $this->section('content') ?>
 <div class="mb-8">
     <div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mb-2">
-        <span class="material-symbols-outlined text-sm" data-icon="home">home</span>
+        <i class="fa-solid fa-house text-sm"></i>
         <span>Dashboard</span>
-        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-sm"></i>
         <span>Media & Galeri</span>
-        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-sm"></i>
         <a href="<?= base_url('admin/gallery') ?>" class="hover:underline">Event Gallery</a>
-        <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+        <i class="fa-solid fa-chevron-right text-sm"></i>
         <span class="font-bold text-primary">Edit</span>
     </div>
     <h2 class="font-headline-lg text-headline-lg text-primary">Edit Album Galeri Kegiatan</h2>
@@ -83,7 +83,7 @@
                             <img src="<?= esc($photo['gambar_url']) ?>" alt="Gallery Photo" class="w-full h-full object-cover" onerror="this.src='<?= base_url('img/logo.png') ?>'; this.className='w-12 h-12 object-contain m-auto absolute inset-0';"/>
                             <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
                                 <a href="<?= base_url('admin/gallery/delete-image/' . $gallery['galeri_id'] . '/' . $photo['galeri_gambar_id']) ?>" onclick="return confirm('Hapus foto ini dari galeri secara permanen?')" class="p-1.5 bg-red-600 hover:bg-red-700 text-white rounded-full transition-colors shadow-lg" title="Hapus Foto">
-                                    <span class="material-symbols-outlined text-[18px]">delete</span>
+                                    <i class="fa-solid fa-trash text-[18px]"></i>
                                 </a>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
 
         <div class="flex items-center gap-3 pt-4 border-t border-outline-variant">
             <button type="submit" class="bg-primary text-on-primary hover:bg-surface-tint rounded px-6 py-2 font-label-md text-label-md font-semibold transition-colors flex items-center gap-2">
-                <span class="material-symbols-outlined text-sm">save</span> Simpan Perubahan
+                <i class="fa-solid fa-save text-sm"></i> Simpan Perubahan
             </button>
             <a href="<?= base_url('admin/gallery') ?>" class="border border-outline text-on-surface-variant hover:bg-surface-container-low rounded px-6 py-2 font-label-md text-label-md font-semibold transition-colors">
                 Batal

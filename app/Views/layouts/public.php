@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     
     <style>
         .marquee {
@@ -102,7 +101,7 @@ $currentUri = current_url();
         <!-- Mobile Controls (Hamburger) -->
         <div class="flex items-center gap-2 lg:hidden">
             <button id="mobile-menu-toggle" class="text-on-primary dark:text-on-primary-container p-2 focus:outline-none hover:bg-white/10 rounded transition-colors" aria-label="Toggle Menu">
-                <span class="material-symbols-outlined text-[28px]" id="menu-icon">menu</span>
+                <i class="fa-solid fa-bars text-[28px]" id="menu-icon"></i>
             </button>
         </div>
 
@@ -110,7 +109,7 @@ $currentUri = current_url();
         <div class="hidden lg:block">
             <form action="<?= base_url('berita') ?>" method="GET" class="relative">
                 <input name="cari" value="<?= esc(service('request')->getGet('cari')) ?>" class="w-64 pl-10 pr-4 py-2 bg-surface text-on-surface border border-outline rounded focus:border-primary-container focus:ring-2 focus:ring-primary-container focus:ring-offset-2 outline-none transition-all font-body-md text-body-md" placeholder="Cari informasi..." type="text"/>
-                <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline">search</span>
+                <i class="fa-solid fa-search absolute left-3 top-2.5 text-outline"></i>
             </form>
         </div>
     </div>
@@ -121,7 +120,7 @@ $currentUri = current_url();
         <!-- Mobile Search Bar -->
         <form action="<?= base_url('berita') ?>" method="GET" class="relative w-full">
             <input name="cari" value="<?= esc(service('request')->getGet('cari')) ?>" class="w-full pl-10 pr-4 py-2 bg-surface text-on-surface border border-outline rounded focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body-md text-body-md" placeholder="Cari informasi..." type="text"/>
-            <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline">search</span>
+            <i class="fa-solid fa-search absolute left-3 top-2.5 text-outline"></i>
         </form>
 
         <!-- Mobile Navigation List -->
@@ -138,7 +137,7 @@ $currentUri = current_url();
                     <?php else: ?>
                         <div class="flex items-center justify-between py-2 cursor-pointer" onclick="toggleMobileSubmenu('<?= $menuId ?>')">
                             <span class="font-bold <?= $isActive ? 'text-secondary-fixed' : 'text-on-primary-container' ?> text-label-md"><?= esc($menu['title']) ?></span>
-                            <span class="material-symbols-outlined text-[20px] transition-transform duration-200" id="arrow-<?= $menuId ?>">keyboard_arrow_down</span>
+                            <i class="fa-solid fa-chevron-down text-[20px] transition-transform duration-200" id="arrow-<?= $menuId ?>"></i>
                         </div>
                         <div id="<?= $menuId ?>" class="hidden pl-4 flex flex-col gap-2 mt-1">
                             <a href="<?= $menuUrl ?>" class="block py-1.5 text-sm text-on-primary-container/85 italic">Buka <?= esc($menu['title']) ?></a>
@@ -157,7 +156,7 @@ $currentUri = current_url();
                                     <?php else: ?>
                                         <div class="flex items-center justify-between py-1.5 cursor-pointer text-sm" onclick="toggleMobileSubmenu('<?= $childId ?>')">
                                             <span class="<?= $isChildActive ? 'text-secondary-fixed font-bold' : 'text-on-primary-container/80' ?>"><?= esc($child['title']) ?></span>
-                                            <span class="material-symbols-outlined text-[18px] transition-transform duration-200" id="arrow-<?= $childId ?>">keyboard_arrow_down</span>
+                                            <i class="fa-solid fa-chevron-down text-[18px] transition-transform duration-200" id="arrow-<?= $childId ?>"></i>
                                         </div>
                                         <div id="<?= $childId ?>" class="hidden pl-4 flex flex-col gap-1.5 mt-1">
                                             <a href="<?= $childUrl ?>" class="block py-1 text-xs text-on-primary-container/75 italic">Buka <?= esc($child['title']) ?></a>
@@ -203,7 +202,7 @@ $currentUri = current_url();
                     <div class="relative group py-1">
                         <a href="<?= $menuUrl ?>" class="flex items-center gap-1 <?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200 focus:outline-none">
                             <span><?= esc($menu['title']) ?></span>
-                            <span class="material-symbols-outlined text-[16px] transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                            <i class="fa-solid fa-chevron-down text-[16px] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <!-- Dropdown Menu -->
                         <div class="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-56 rounded shadow-lg bg-primary border border-primary-container py-2 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
@@ -225,7 +224,7 @@ $currentUri = current_url();
                                     <div class="relative group/sub">
                                         <a href="<?= $childUrl ?>" class="w-full flex items-center justify-between px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150 text-left focus:outline-none">
                                             <span><?= esc($child['title']) ?></span>
-                                            <span class="material-symbols-outlined text-[16px]">keyboard_arrow_right</span>
+                                            <i class="fa-solid fa-chevron-right text-[16px]"></i>
                                         </a>
                                         <div class="absolute left-full top-0 ml-0.5 w-56 rounded shadow-lg bg-primary border border-primary-container py-2 z-50 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 transform translate-x-2 group-hover/sub:translate-x-0">
                                             <?php foreach ($child['children'] as $subchild): ?>
@@ -258,7 +257,7 @@ $currentUri = current_url();
                     <div class="relative group py-1">
                         <a href="<?= $menuUrl ?>" class="flex items-center gap-1 <?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200 focus:outline-none">
                             <span><?= esc($menu['title']) ?></span>
-                            <span class="material-symbols-outlined text-[16px] transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                            <i class="fa-solid fa-chevron-down text-[16px] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <!-- Dropdown Menu -->
                         <div class="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-56 rounded shadow-lg bg-primary border border-primary-container py-2 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
@@ -280,7 +279,7 @@ $currentUri = current_url();
                                     <div class="relative group/sub">
                                         <a href="<?= $childUrl ?>" class="w-full flex items-center justify-between px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150 text-left focus:outline-none">
                                             <span><?= esc($child['title']) ?></span>
-                                            <span class="material-symbols-outlined text-[16px]">keyboard_arrow_right</span>
+                                            <i class="fa-solid fa-chevron-right text-[16px]"></i>
                                         </a>
                                         <div class="absolute left-full top-0 ml-0.5 w-56 rounded shadow-lg bg-primary border border-primary-container py-2 z-50 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 transform translate-x-2 group-hover/sub:translate-x-0">
                                             <?php foreach ($child['children'] as $subchild): ?>
@@ -350,11 +349,11 @@ $currentUri = current_url();
             <div class="font-headline-md text-headline-md font-bold text-secondary-fixed">KONTAK</div>
             <div class="flex flex-col gap-3 text-on-primary dark:text-on-tertiary-container opacity-90 font-body-md text-body-md">
                 <div class="flex items-start gap-2">
-                    <span class="material-symbols-outlined text-secondary-fixed shrink-0 mt-0.5">location_on</span>
+                    <i class="fa-solid fa-map-marker-alt text-secondary-fixed shrink-0 mt-0.5"></i>
                     <span>Jl. R.A. Kartini No. 1 Kelurahan Biringere</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-secondary-fixed shrink-0">mail</span>
+                    <i class="fa-solid fa-envelope text-secondary-fixed shrink-0"></i>
                     <a class="hover:underline text-on-primary dark:text-on-tertiary-container" href="mailto:dispusip@sinjaikab.go.id">dispusip@sinjaikab.go.id</a>
                 </div>
                 <div class="flex gap-4 mt-2 items-center">
