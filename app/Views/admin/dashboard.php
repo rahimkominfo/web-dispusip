@@ -83,7 +83,7 @@
                                         <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-[#FEF7E0] text-[#B06000]">Draf</span>
                                     <?php endif; ?>
                                 </td>
-                                <td class="p-4 py-3 text-on-surface-variant text-sm"><?= date('d M Y', strtotime($artikel['tanggal_publikasi'])) ?></td>
+                                <td class="p-4 py-3 text-on-surface-variant text-sm"><?= format_indo($artikel['tanggal_publikasi'], 'short') ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>

@@ -24,7 +24,7 @@
             <div class="flex flex-wrap items-center gap-4 text-on-surface-variant font-caption text-caption border-b border-outline-variant pb-4">
                 <div class="flex items-center gap-1">
                     <i class="fa-solid fa-calendar text-[16px]"></i>
-                    <?= date('d F Y', strtotime($article['tanggal_publikasi'])) ?>
+                    <?= format_indo($article['tanggal_publikasi'], 'long') ?>
                 </div>
                 <div class="flex items-center gap-1">
                     <i class="fa-solid fa-user text-[16px]"></i>
@@ -91,7 +91,7 @@
                             <div class="flex flex-col w-full">
                                 <div class="flex justify-between items-baseline mb-1">
                                     <span class="font-label-md text-label-md font-semibold text-on-surface"><?= esc($comment['nama_pengunjung']) ?></span>
-                                    <span class="font-caption text-caption text-outline"><?= date('d/m/Y H:i', strtotime($comment['created_at'])) ?></span>
+                                    <span class="font-caption text-caption text-outline"><?= format_indo($comment['created_at'], 'short_time') ?></span>
                                 </div>
                                 <p class="font-body-md text-body-md text-on-surface-variant mb-2"><?= esc($comment['isi_komentar']) ?></p>
                                 <button onclick="replyTo('<?= esc($comment['komentar_id']) ?>', '<?= esc($comment['nama_pengunjung']) ?>')" class="text-primary font-label-md text-label-md hover:underline self-start">Balas</button>
@@ -109,7 +109,7 @@
                                                     <?php if (strpos(strtolower($reply['nama_pengunjung']), 'admin') !== false || strpos(strtolower($reply['nama_pengunjung']), 'staff') !== false): ?>
                                                         <span class="bg-primary text-on-primary text-[10px] px-1.5 py-0.5 rounded font-bold">STAFF</span>
                                                     <?php endif; ?>
-                                                    <span class="font-caption text-caption text-outline ml-auto"><?= date('d/m/Y H:i', strtotime($reply['created_at'])) ?></span>
+                                                    <span class="font-caption text-caption text-outline ml-auto"><?= format_indo($reply['created_at'], 'short_time') ?></span>
                                                 </div>
                                                 <p class="font-body-md text-body-md text-on-surface-variant"><?= esc($reply['isi_komentar']) ?></p>
                                             </div>

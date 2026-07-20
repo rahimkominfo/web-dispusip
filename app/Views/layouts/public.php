@@ -313,9 +313,11 @@ $currentUri = current_url();
         mobileMenuToggle.addEventListener('click', function() {
             mobileMenuPanel.classList.toggle('hidden');
             if (mobileMenuPanel.classList.contains('hidden')) {
-                menuIcon.textContent = 'menu';
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
             } else {
-                menuIcon.textContent = 'close';
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
             }
         });
     }
@@ -378,9 +380,9 @@ $currentUri = current_url();
         <div class="flex flex-col gap-3">
             <h4 class="font-title-lg text-title-lg text-on-primary dark:text-on-tertiary-container">Link Terkait</h4>
             <div class="flex flex-wrap gap-2 mt-1">
-                <a href="https://inlislite.sinjaikab.go.id/" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition-opacity">
-                    <img src="<?= base_url('assets/link%20terkait/inlislite.png') ?>" alt="Inlislite" class="h-10 w-auto object-contain rounded bg-white p-1" title="Inlislite">
-                </a>
+                <!-- <a href="<?= base_url('opac') ?>" class="hover:opacity-80 transition-opacity">
+                    <img src="<?= base_url('assets/link%20terkait/inlislite.png') ?>" alt="Inlislite OPAC" class="h-10 w-auto object-contain rounded bg-white p-1" title="Inlislite OPAC Perpustakaan">
+                </a> -->
                 <a href="https://play.google.com/store/apps/details?id=mam.reader.isulsel" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition-opacity">
                     <img src="<?= base_url('assets/link%20terkait/isulsel.jpg') ?>" alt="iSulsel" class="h-10 w-auto object-contain rounded bg-white p-1" title="iSulsel">
                 </a>

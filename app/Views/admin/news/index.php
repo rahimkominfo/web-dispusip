@@ -96,7 +96,7 @@
                                 <?= esc($art['jumlah_tayang']) ?>x
                             </td>
                             <td class="p-4 py-3 text-sm text-on-surface-variant">
-                                <?= date('d M Y, H:i', strtotime($art['tanggal_publikasi'])) ?>
+                                <?= format_indo($art['tanggal_publikasi'], 'short_time') ?>
                             </td>
                             <td class="p-4 py-3">
                                 <?php if ($art['status'] === 'Ditayangkan'): ?>

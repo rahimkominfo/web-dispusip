@@ -56,9 +56,13 @@
                         </div>
                         <div class="p-5 flex flex-col sm:w-2/3">
                             <div class="flex items-center gap-2 mb-2 font-caption text-caption text-on-surface-variant flex-wrap">
-                                <span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded font-medium">Berita</span>
+                                <?php if (!empty($artikel['categories_list'])): ?>
+                                    <span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded font-medium"><?= esc($artikel['categories_list']) ?></span>
+                                <?php else: ?>
+                                    <span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded font-medium">Umum</span>
+                                <?php endif; ?>
                                 <span>•</span>
-                                <span class="flex items-center gap-1"><i class="fa-solid fa-calendar text-[14px]"></i> <?= date('d M Y', strtotime($artikel['tanggal_publikasi'])) ?></span>
+                                <span class="flex items-center gap-1"><i class="fa-solid fa-calendar text-[14px]"></i> <?= format_indo($artikel['tanggal_publikasi'], 'long') ?></span>
                                 <span>•</span>
                                 <span class="flex items-center gap-1"><i class="fa-solid fa-user text-[14px]"></i> <?= esc($artikel['author_name'] ?? 'Admin') ?></span>
                             </div>

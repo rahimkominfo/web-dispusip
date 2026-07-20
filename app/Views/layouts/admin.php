@@ -104,6 +104,12 @@ $inactiveClass = "flex items-center gap-3 text-on-surface-variant px-4 py-3 hove
                     Galeri
                 </a>
             </li>
+            <li>
+                <a class="<?= url_is('admin/youtube*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/youtube') ?>">
+                    <i class="fa-brands fa-youtube"></i>
+                    Youtube
+                </a>
+            </li>
             <li class="pt-4 pb-2 px-4 font-label-md text-label-md font-bold text-on-surface-variant uppercase tracking-wider">Pengguna &amp; Sistem</li>
             <li>
                 <a class="<?= url_is('admin/users*') ? $activeClass : $inactiveClass ?>" href="<?= base_url('admin/users') ?>">

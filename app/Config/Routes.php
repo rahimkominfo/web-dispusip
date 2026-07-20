@@ -11,8 +11,10 @@ $routes->get('berita', 'Berita::index');
 $routes->post('berita/komentar', 'Berita::tambahKomentar');
 $routes->get('berita/(:segment)', 'Berita::detail/$1');
 $routes->get('flyers', 'Flyers::index');
-$routes->get('gallery', 'Gallery::index');
+$routes->get('galeri/foto', 'Gallery::index');
+$routes->get('galeri/video', 'Gallery::video');
 $routes->get('page/(:segment)', 'Page::view/$1');
+$routes->get('opac', 'Opac::index');
 
 // Auth Routes
 $routes->get('login', 'Auth::login');
@@ -121,6 +123,14 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('gallery/delete/(:num)', 'Admin\Gallery::delete/$1');
     $routes->get('gallery/delete-image/(:num)/(:num)', 'Admin\Gallery::deleteImage/$1/$2');
     
+    // Youtube Video CRUD
+    $routes->get('youtube', 'Admin\Youtube::index');
+    $routes->get('youtube/create', 'Admin\Youtube::create');
+    $routes->post('youtube/store', 'Admin\Youtube::store');
+    $routes->get('youtube/edit/(:num)', 'Admin\Youtube::edit/$1');
+    $routes->post('youtube/update/(:num)', 'Admin\Youtube::update/$1');
+    $routes->get('youtube/delete/(:num)', 'Admin\Youtube::delete/$1');
+
     // Comments Moderation
     $routes->get('komentar/approve/(:num)', 'Admin::approveKomentar/$1');
     $routes->get('komentar/spam/(:num)', 'Admin::spamKomentar/$1');

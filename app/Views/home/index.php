@@ -54,7 +54,7 @@
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="text-caption text-outline font-caption mb-2 flex items-center gap-1">
                                 <i class="fa-solid fa-calendar text-[14px]"></i>
-                                <?= date('d M Y', strtotime($artikel['tanggal_publikasi'])) ?>
+                                <?= format_indo($artikel['tanggal_publikasi'], 'long') ?>
                             </div>
                             <h3 class="font-title-lg text-title-lg text-primary mb-2 line-clamp-2 hover:text-surface-tint">
                                 <a href="<?= base_url('berita/' . $artikel['slug']) ?>"><?= esc($artikel['judul']) ?></a>
@@ -128,7 +128,7 @@
         <section class="mt-12">
             <div class="flex justify-between items-center border-b-2 border-primary pb-2 mb-6">
                 <h2 class="font-headline-lg text-headline-lg text-primary m-0">Galeri Kegiatan</h2>
-                <a href="<?= base_url('gallery') ?>" class="text-sm font-label-md text-primary hover:text-secondary-fixed transition-colors flex items-center gap-1">
+                <a href="<?= base_url('galeri/foto') ?>" class="text-sm font-label-md text-primary hover:text-secondary-fixed transition-colors flex items-center gap-1">
                     Lihat Semua <i class="fa-solid fa-arrow-right text-[18px]"></i>
                 </a>
             </div>
