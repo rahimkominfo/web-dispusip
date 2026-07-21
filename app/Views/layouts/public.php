@@ -227,7 +227,7 @@ $currentUri = current_url();
                     <a class="<?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200" href="<?= $menuUrl ?>" <?= $menuUrl === 'javascript:void(0)' ? 'onclick="event.preventDefault()"' : '' ?>><?= esc($menu['title']) ?></a>
                 <?php else: ?>
                     <div class="relative group py-1">
-                        <a href="javascript:void(0)" onclick="event.preventDefault()" class="flex items-center gap-1 <?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200 focus:outline-none">
+                        <a href="<?= $menuUrl ?>" <?= $menuUrl === 'javascript:void(0)' ? 'onclick="event.preventDefault()"' : '' ?> class="flex items-center gap-1 <?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200 focus:outline-none">
                             <span><?= esc($menu['title']) ?></span>
                             <i class="fa-solid fa-chevron-down text-[16px] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
@@ -249,7 +249,7 @@ $currentUri = current_url();
                                     $isChildActive = isMenuOrChildActive($child, $currentUri);
                                     ?>
                                     <div class="relative group/sub">
-                                        <a href="javascript:void(0)" onclick="event.preventDefault()" class="w-full flex items-center justify-between px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150 text-left focus:outline-none">
+                                        <a href="<?= $childUrl ?>" <?= $childUrl === 'javascript:void(0)' ? 'onclick="event.preventDefault()"' : '' ?> class="w-full flex items-center justify-between px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150 text-left focus:outline-none">
                                             <span><?= esc($child['title']) ?></span>
                                             <i class="fa-solid fa-chevron-right text-[16px]"></i>
                                         </a>
@@ -283,7 +283,7 @@ $currentUri = current_url();
                     <a class="<?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200" href="<?= $menuUrl ?>" <?= $menuUrl === 'javascript:void(0)' ? 'onclick="event.preventDefault()"' : '' ?>><?= esc($menu['title']) ?></a>
                 <?php else: ?>
                     <div class="relative group py-1">
-                        <a href="javascript:void(0)" onclick="event.preventDefault()" class="flex items-center gap-1 <?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200 focus:outline-none">
+                        <a href="<?= $menuUrl ?>" <?= $menuUrl === 'javascript:void(0)' ? 'onclick="event.preventDefault()"' : '' ?> class="flex items-center gap-1 <?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200 focus:outline-none">
                             <span><?= esc($menu['title']) ?></span>
                             <i class="fa-solid fa-chevron-down text-[16px] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
@@ -305,7 +305,7 @@ $currentUri = current_url();
                                     $isChildActive = isMenuOrChildActive($child, $currentUri);
                                     ?>
                                     <div class="relative group/sub">
-                                        <a href="javascript:void(0)" onclick="event.preventDefault()" class="w-full flex items-center justify-between px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150 text-left focus:outline-none">
+                                        <a href="<?= $childUrl ?>" <?= $childUrl === 'javascript:void(0)' ? 'onclick="event.preventDefault()"' : '' ?> class="w-full flex items-center justify-between px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150 text-left focus:outline-none">
                                             <span><?= esc($child['title']) ?></span>
                                             <i class="fa-solid fa-chevron-right text-[16px]"></i>
                                         </a>
