@@ -67,11 +67,22 @@ foreach ($menusById as $id => &$menu) {
 }
 unset($menu);
 
+// Helper function to format menu URLs safely
+if (!function_exists('formatMenuUrl')) {
+    function formatMenuUrl($url) {
+        $trimmed = trim((string)$url);
+        if ($trimmed === '' || $trimmed === '#' || str_starts_with($trimmed, 'javascript:')) {
+            return 'javascript:void(0)';
+        }
+        return filter_var($trimmed, FILTER_VALIDATE_URL) ? $trimmed : base_url($trimmed);
+    }
+}
+
 // Helper function to check if a menu or any of its descendants is active
 if (!function_exists('isMenuOrChildActive')) {
     function isMenuOrChildActive($menu, $currentUri) {
-        $menuUrl = (filter_var($menu['url'], FILTER_VALIDATE_URL) ? $menu['url'] : base_url($menu['url']));
-        if (rtrim($menuUrl, '/') === rtrim($currentUri, '/')) {
+        $menuUrl = formatMenuUrl($menu['url'] ?? '');
+        if ($menuUrl !== 'javascript:void(0)' && rtrim($menuUrl, '/') === rtrim($currentUri, '/')) {
             return true;
         }
         if (!empty($menu['children'])) {
@@ -137,7 +148,7 @@ $currentUri = current_url();
         <!-- Mobile Navigation List -->
         <div class="flex flex-col gap-2">
             <?php foreach ($menuTree as $index => $menu): 
-                $menuUrl = (filter_var($menu['url'], FILTER_VALIDATE_URL) ? $menu['url'] : base_url($menu['url']));
+                $menuUrl = formatMenuUrl($menu['url']);
                 $isActive = isMenuOrChildActive($menu, $currentUri);
                 $hasChildren = !empty($menu['children']);
                 $menuId = "mobile-menu-" . $index;
@@ -151,10 +162,12 @@ $currentUri = current_url();
                             <i class="fa-solid fa-chevron-down text-[20px] transition-transform duration-200" id="arrow-<?= $menuId ?>"></i>
                         </div>
                         <div id="<?= $menuId ?>" class="hidden pl-4 flex flex-col gap-2 mt-1">
-                            <a href="<?= $menuUrl ?>" class="block py-1.5 text-sm text-on-primary-container/85 italic">Buka <?= esc($menu['title']) ?></a>
+                            <?php if ($menuUrl !== 'javascript:void(0)'): ?>
+                                <a href="<?= $menuUrl ?>" class="block py-1.5 text-sm text-on-primary-container/85 italic">Buka <?= esc($menu['title']) ?></a>
+                            <?php endif; ?>
                             
                             <?php foreach ($menu['children'] as $cIndex => $child): 
-                                $childUrl = (filter_var($child['url'], FILTER_VALIDATE_URL) ? $child['url'] : base_url($child['url']));
+                                $childUrl = formatMenuUrl($child['url']);
                                 $isChildActive = isMenuOrChildActive($child, $currentUri);
                                 $hasSubChildren = !empty($child['children']);
                                 $childId = $menuId . "-sub-" . $cIndex;
@@ -170,9 +183,11 @@ $currentUri = current_url();
                                             <i class="fa-solid fa-chevron-down text-[18px] transition-transform duration-200" id="arrow-<?= $childId ?>"></i>
                                         </div>
                                         <div id="<?= $childId ?>" class="hidden pl-4 flex flex-col gap-1.5 mt-1">
-                                            <a href="<?= $childUrl ?>" class="block py-1 text-xs text-on-primary-container/75 italic">Buka <?= esc($child['title']) ?></a>
+                                            <?php if ($childUrl !== 'javascript:void(0)'): ?>
+                                                <a href="<?= $childUrl ?>" class="block py-1 text-xs text-on-primary-container/75 italic">Buka <?= esc($child['title']) ?></a>
+                                            <?php endif; ?>
                                             <?php foreach ($child['children'] as $subchild): 
-                                                $subchildUrl = (filter_var($subchild['url'], FILTER_VALIDATE_URL) ? $subchild['url'] : base_url($subchild['url']));
+                                                $subchildUrl = formatMenuUrl($subchild['url']);
                                                 $isSubActive = isMenuOrChildActive($subchild, $currentUri);
                                             ?>
                                                 <a href="<?= $subchildUrl ?>" class="block py-1 text-xs <?= $isSubActive ? 'text-secondary-fixed font-semibold' : 'text-on-primary-container/70' ?>">
@@ -204,14 +219,15 @@ $currentUri = current_url();
         <!-- First Row of Menu Items -->
         <div class="flex items-center justify-center flex-wrap gap-x-8 gap-y-1">
             <?php foreach ($row1 as $menu): 
-                $menuUrl = (filter_var($menu['url'], FILTER_VALIDATE_URL) ? $menu['url'] : base_url($menu['url']));
+                $menuUrl = formatMenuUrl($menu['url']);
                 $isActive = isMenuOrChildActive($menu, $currentUri);
+                $hasChildren = !empty($menu['children']);
             ?>
-                <?php if (empty($menu['children'])): ?>
-                    <a class="<?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200" href="<?= $menuUrl ?>"><?= esc($menu['title']) ?></a>
+                <?php if (!$hasChildren): ?>
+                    <a class="<?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200" href="<?= $menuUrl ?>" <?= $menuUrl === 'javascript:void(0)' ? 'onclick="event.preventDefault()"' : '' ?>><?= esc($menu['title']) ?></a>
                 <?php else: ?>
                     <div class="relative group py-1">
-                        <a href="<?= $menuUrl ?>" class="flex items-center gap-1 <?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200 focus:outline-none">
+                        <a href="javascript:void(0)" onclick="event.preventDefault()" class="flex items-center gap-1 <?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200 focus:outline-none">
                             <span><?= esc($menu['title']) ?></span>
                             <i class="fa-solid fa-chevron-down text-[16px] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
@@ -220,30 +236,30 @@ $currentUri = current_url();
                             <?php foreach ($menu['children'] as $child): ?>
                                 <?php if (empty($child['children'])): ?>
                                     <?php 
-                                    $childUrl = (filter_var($child['url'], FILTER_VALIDATE_URL) ? $child['url'] : base_url($child['url']));
+                                    $childUrl = formatMenuUrl($child['url']);
                                     $isChildActive = isMenuOrChildActive($child, $currentUri);
                                     ?>
-                                    <a href="<?= $childUrl ?>" class="block px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150">
+                                    <a href="<?= $childUrl ?>" <?= $childUrl === 'javascript:void(0)' ? 'onclick="event.preventDefault()"' : '' ?> class="block px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150">
                                         <?= esc($child['title']) ?>
                                     </a>
                                 <?php else: ?>
                                     <!-- Level 2 Submenu (Sub-sub menu) -->
                                     <?php 
-                                    $childUrl = (filter_var($child['url'], FILTER_VALIDATE_URL) ? $child['url'] : base_url($child['url']));
+                                    $childUrl = formatMenuUrl($child['url']);
                                     $isChildActive = isMenuOrChildActive($child, $currentUri);
                                     ?>
                                     <div class="relative group/sub">
-                                        <a href="<?= $childUrl ?>" class="w-full flex items-center justify-between px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150 text-left focus:outline-none">
+                                        <a href="javascript:void(0)" onclick="event.preventDefault()" class="w-full flex items-center justify-between px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150 text-left focus:outline-none">
                                             <span><?= esc($child['title']) ?></span>
                                             <i class="fa-solid fa-chevron-right text-[16px]"></i>
                                         </a>
                                         <div class="absolute left-full top-0 ml-0.5 w-56 rounded shadow-lg bg-primary border border-primary-container py-2 z-50 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 transform translate-x-2 group-hover/sub:translate-x-0">
                                             <?php foreach ($child['children'] as $subchild): ?>
                                                 <?php 
-                                                $subchildUrl = (filter_var($subchild['url'], FILTER_VALIDATE_URL) ? $subchild['url'] : base_url($subchild['url']));
+                                                $subchildUrl = formatMenuUrl($subchild['url']);
                                                 $isSubChildActive = isMenuOrChildActive($subchild, $currentUri);
                                                 ?>
-                                                <a href="<?= $subchildUrl ?>" class="block px-4 py-2.5 text-sm <?= $isSubChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150">
+                                                <a href="<?= $subchildUrl ?>" <?= $subchildUrl === 'javascript:void(0)' ? 'onclick="event.preventDefault()"' : '' ?> class="block px-4 py-2.5 text-sm <?= $isSubChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150">
                                                     <?= esc($subchild['title']) ?>
                                                 </a>
                                             <?php endforeach; ?>
@@ -259,14 +275,15 @@ $currentUri = current_url();
         <!-- Second Row of Menu Items -->
         <div class="flex items-center justify-center flex-wrap gap-x-8 gap-y-1">
             <?php foreach ($row2 as $menu): 
-                $menuUrl = (filter_var($menu['url'], FILTER_VALIDATE_URL) ? $menu['url'] : base_url($menu['url']));
+                $menuUrl = formatMenuUrl($menu['url']);
                 $isActive = isMenuOrChildActive($menu, $currentUri);
+                $hasChildren = !empty($menu['children']);
             ?>
-                <?php if (empty($menu['children'])): ?>
-                    <a class="<?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200" href="<?= $menuUrl ?>"><?= esc($menu['title']) ?></a>
+                <?php if (!$hasChildren): ?>
+                    <a class="<?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200" href="<?= $menuUrl ?>" <?= $menuUrl === 'javascript:void(0)' ? 'onclick="event.preventDefault()"' : '' ?>><?= esc($menu['title']) ?></a>
                 <?php else: ?>
                     <div class="relative group py-1">
-                        <a href="<?= $menuUrl ?>" class="flex items-center gap-1 <?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200 focus:outline-none">
+                        <a href="javascript:void(0)" onclick="event.preventDefault()" class="flex items-center gap-1 <?= $isActive ? 'text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-0.5' : 'text-on-primary dark:text-on-primary-container opacity-90' ?> font-label-md text-label-md hover:text-secondary-fixed transition-colors duration-200 focus:outline-none">
                             <span><?= esc($menu['title']) ?></span>
                             <i class="fa-solid fa-chevron-down text-[16px] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
@@ -275,30 +292,30 @@ $currentUri = current_url();
                             <?php foreach ($menu['children'] as $child): ?>
                                 <?php if (empty($child['children'])): ?>
                                     <?php 
-                                    $childUrl = (filter_var($child['url'], FILTER_VALIDATE_URL) ? $child['url'] : base_url($child['url']));
+                                    $childUrl = formatMenuUrl($child['url']);
                                     $isChildActive = isMenuOrChildActive($child, $currentUri);
                                     ?>
-                                    <a href="<?= $childUrl ?>" class="block px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150">
+                                    <a href="<?= $childUrl ?>" <?= $childUrl === 'javascript:void(0)' ? 'onclick="event.preventDefault()"' : '' ?> class="block px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150">
                                         <?= esc($child['title']) ?>
                                     </a>
                                 <?php else: ?>
                                     <!-- Level 2 Submenu (Sub-sub menu) -->
                                     <?php 
-                                    $childUrl = (filter_var($child['url'], FILTER_VALIDATE_URL) ? $child['url'] : base_url($child['url']));
+                                    $childUrl = formatMenuUrl($child['url']);
                                     $isChildActive = isMenuOrChildActive($child, $currentUri);
                                     ?>
                                     <div class="relative group/sub">
-                                        <a href="<?= $childUrl ?>" class="w-full flex items-center justify-between px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150 text-left focus:outline-none">
+                                        <a href="javascript:void(0)" onclick="event.preventDefault()" class="w-full flex items-center justify-between px-4 py-2.5 text-sm <?= $isChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150 text-left focus:outline-none">
                                             <span><?= esc($child['title']) ?></span>
                                             <i class="fa-solid fa-chevron-right text-[16px]"></i>
                                         </a>
                                         <div class="absolute left-full top-0 ml-0.5 w-56 rounded shadow-lg bg-primary border border-primary-container py-2 z-50 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 transform translate-x-2 group-hover/sub:translate-x-0">
                                             <?php foreach ($child['children'] as $subchild): ?>
                                                 <?php 
-                                                $subchildUrl = (filter_var($subchild['url'], FILTER_VALIDATE_URL) ? $subchild['url'] : base_url($subchild['url']));
+                                                $subchildUrl = formatMenuUrl($subchild['url']);
                                                 $isSubChildActive = isMenuOrChildActive($subchild, $currentUri);
                                                 ?>
-                                                <a href="<?= $subchildUrl ?>" class="block px-4 py-2.5 text-sm <?= $isSubChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150">
+                                                <a href="<?= $subchildUrl ?>" <?= $subchildUrl === 'javascript:void(0)' ? 'onclick="event.preventDefault()"' : '' ?> class="block px-4 py-2.5 text-sm <?= $isSubChildActive ? 'text-secondary-fixed font-bold bg-primary-container' : 'text-white/90 hover:text-white hover:bg-primary-container' ?> transition-colors duration-150">
                                                     <?= esc($subchild['title']) ?>
                                                 </a>
                                             <?php endforeach; ?>

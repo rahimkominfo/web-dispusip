@@ -657,12 +657,6 @@
   .h-\[400px\] {
     height: 400px;
   }
-  .h-\[2500px\] {
-    height: 2500px;
-  }
-  .h-\[calc\(100vh-100px\)\] {
-    height: calc(100vh - 100px);
-  }
   .h-fit {
     height: fit-content;
   }
@@ -1154,6 +1148,12 @@
     border-color: color-mix(in srgb, #002046 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       border-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
+    }
+  }
+  .border-primary\/30 {
+    border-color: color-mix(in srgb, #002046 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-primary) 30%, transparent);
     }
   }
   .border-red-200 {
@@ -2381,6 +2381,16 @@
       }
     }
   }
+  .hover\:bg-primary\/20 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in srgb, #002046 20%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
+        }
+      }
+    }
+  }
   .hover\:bg-primary\/90 {
     &:hover {
       @media (hover: hover) {
@@ -2416,6 +2426,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-surface-container-high);
+      }
+    }
+  }
+  .hover\:bg-surface-container-highest {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-surface-container-highest);
       }
     }
   }
@@ -2478,6 +2495,13 @@
     &:hover {
       @media (hover: hover) {
         color: var(--color-on-primary-container);
+      }
+    }
+  }
+  .hover\:text-on-surface {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-on-surface);
       }
     }
   }
@@ -2558,14 +2582,6 @@
     &:hover {
       @media (hover: hover) {
         opacity: 80%;
-      }
-    }
-  }
-  .hover\:shadow {
-    &:hover {
-      @media (hover: hover) {
-        --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
-        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
       }
     }
   }
