@@ -5,6 +5,10 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title><?= $this->renderSection('title') ?> - DISPUSIP Admin Dashboard</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="<?= base_url('img/logo.png') ?>"/>
+    <link rel="shortcut icon" type="image/png" href="<?= base_url('img/logo.png') ?>"/>
+    
     <!-- Local Compiled Tailwind and FontAwesome CSS -->
     <link href="<?= base_url('css/app.css') ?>" rel="stylesheet"/>
     
