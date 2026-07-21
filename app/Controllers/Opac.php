@@ -8,7 +8,7 @@ class Opac extends BaseController
     {
         $data = [
             'title'   => 'OPAC (Katalog Perpustakaan)',
-            'opacUrl' => 'https://inlislite.sinjaikab.go.id/inlislite5/opac/'
+            'opacUrl' => 'https://apl.sinjaikab.go.id/inlislite5/opac/'
         ];
 
         return view('opac/index', $data);
