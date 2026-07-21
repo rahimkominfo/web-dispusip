@@ -15,6 +15,7 @@ $routes->get('galeri/foto', 'Gallery::index');
 $routes->get('galeri/video', 'Gallery::video');
 $routes->get('page/(:segment)', 'Page::view/$1');
 $routes->get('opac', 'Opac::index');
+$routes->get('ipus', 'Ipus::index');
 
 // Auth Routes
 $routes->get('login', 'Auth::login');
