@@ -17,6 +17,12 @@ $routes->get('page/(:segment)', 'Page::view/$1');
 $routes->get('opac', 'Opac::index');
 $routes->get('ipus', 'Ipus::index');
 
+// PPID Routes
+$routes->get('ppid/berkala', 'Ppid::berkala');
+$routes->get('ppid/setiap_saat', 'Ppid::setiap_saat');
+$routes->get('ppid/serta_merta', 'Ppid::serta_merta');
+$routes->get('ppid/dikecualikan', 'Ppid::dikecualikan');
+
 // Auth Routes
 $routes->get('login', 'Auth::login');
 $routes->post('login', 'Auth::proses');

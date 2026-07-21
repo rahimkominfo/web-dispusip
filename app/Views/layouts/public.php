@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="overflow-x-hidden max-w-full">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -14,6 +14,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
     
     <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden !important;
+        }
         .marquee {
             overflow: hidden;
             white-space: nowrap;
@@ -31,7 +38,7 @@
         }
     </style>
 </head>
-<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col overflow-x-hidden w-full max-w-full relative">
 
 <?php
 // Load dynamic menu and running text directly in layout for clean MVC integration
@@ -340,7 +347,7 @@ $currentUri = current_url();
 </script>
 
 <!-- Main Content -->
-<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8 md:py-12">
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8 md:py-12 overflow-x-hidden">
     <?= $this->renderSection('content') ?>
 </main>
 
