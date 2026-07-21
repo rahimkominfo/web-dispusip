@@ -4,7 +4,8 @@
 
 <?= $this->section('content') ?>
 <!-- Hero Section (Responsive Hero Banners) -->
-<section class="w-full h-96 bg-surface-container-high rounded-xl overflow-hidden flex items-center justify-center relative mb-12">
+<section
+    class="w-full h-96 bg-surface-container-high rounded-xl overflow-hidden flex items-center justify-center relative mb-12">
     <!-- Responsive Picture Element -->
     <picture class="absolute inset-0 w-full h-full">
         <!-- Desktop (min-width: 1024px) -->
@@ -12,14 +13,15 @@
         <!-- Tablet (min-width: 768px) -->
         <source media="(min-width: 768px)" srcset="<?= base_url('img/hero-tablet.jpg') ?>">
         <!-- Mobile (default) -->
-        <img alt="Portal Resmi DISPUSIP Sinjai" class="absolute inset-0 w-full h-full object-cover" src="<?= base_url('img/hero-mobile.jpg') ?>"/>
+        <img alt="Portal Resmi DISPUSIP Sinjai" class="absolute inset-0 w-full h-full object-cover"
+            src="<?= base_url('img/hero-mobile.jpg') ?>" />
     </picture>
-    
+
     <!-- Dark Gradient Overlay for Tonal Contrast and Text Readability -->
-    <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-transparent opacity-95 z-10"></div>
-    
+    <!-- <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-transparent opacity-95 z-10"></div> -->
+
     <!-- Hero Text Content -->
-    <div class="relative z-20 text-left px-gutter md:px-12 max-w-3xl mr-auto flex flex-col items-start justify-center h-full">
+    <!-- <div class="relative z-20 text-left px-gutter md:px-12 max-w-3xl mr-auto flex flex-col items-start justify-center h-full">
         <span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1.5 rounded-full font-caption text-xs uppercase tracking-wider font-bold mb-4 inline-block shadow-sm">
             Portal Resmi
         </span>
@@ -29,22 +31,25 @@
         <p class="text-on-primary/85 font-body-md text-sm md:text-base max-w-xl leading-relaxed">
             Menyediakan akses informasi digital, layanan perpustakaan umum terpadu, serta pelestarian dan digitalisasi arsip sejarah daerah.
         </p>
-    </div>
+    </div> -->
 </section>
 
 <!-- Main Layout (70/30) -->
 <div class="flex flex-col md:flex-row gap-gutter">
     <!-- Main Content (70%) -->
     <div class="w-full md:w-2/3 flex flex-col gap-8">
-        <h2 class="font-headline-lg text-headline-lg border-b border-outline-variant pb-4 text-primary">Berita Terkini</h2>
-        
+        <h2 class="font-headline-lg text-headline-lg border-b border-outline-variant pb-4 text-primary">Berita Terkini
+        </h2>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <?php if (!empty($latest_articles)): ?>
                 <?php foreach ($latest_articles as $artikel): ?>
-                    <article class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                    <article
+                        class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
                         <div class="h-48 overflow-hidden relative">
                             <?php if ($artikel['gambar_utama']): ?>
-                                <img class="w-full h-full object-cover" src="<?= esc($artikel['gambar_utama']) ?>" alt="<?= esc($artikel['judul']) ?>">
+                                <img class="w-full h-full object-cover" src="<?= esc($artikel['gambar_utama']) ?>"
+                                    alt="<?= esc($artikel['judul']) ?>">
                             <?php else: ?>
                                 <div class="w-full h-full bg-surface-container-high flex items-center justify-center">
                                     <i class="fa-solid fa-image text-4xl text-outline"></i>
@@ -62,7 +67,8 @@
                             <p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-3">
                                 <?= esc($artikel['abstrak'] ?? strip_tags($artikel['konten'])) ?>
                             </p>
-                            <a class="mt-auto inline-flex items-center gap-1 font-semibold text-surface-tint hover:text-primary transition-colors" href="<?= base_url('berita/' . $artikel['slug']) ?>">
+                            <a class="mt-auto inline-flex items-center gap-1 font-semibold text-surface-tint hover:text-primary transition-colors"
+                                href="<?= base_url('berita/' . $artikel['slug']) ?>">
                                 Selengkapnya <i class="fa-solid fa-arrow-right text-sm"></i>
                             </a>
                         </div>
@@ -80,45 +86,64 @@
         <section class="mt-4">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-6">
                 <div class="flex-1">
-                    <h2 class="font-headline-lg text-headline-lg border-b-2 border-primary inline-block pb-2">Banner &amp; Flyer</h2>
+                    <h2 class="font-headline-lg text-headline-lg border-b-2 border-primary inline-block pb-2">Banner
+                        &amp; Flyer</h2>
                 </div>
                 <div class="flex items-center gap-3">
-                    <a href="<?= base_url('flyers') ?>" class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-lg text-label-lg hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm flex items-center gap-2 group">
+                    <a href="<?= base_url('flyers') ?>"
+                        class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-lg text-label-lg hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm flex items-center gap-2 group">
                         Lihat Semua
                         <i class="fa-solid fa-arrow-right text-lg transition-transform group-hover:translate-x-1"></i>
                     </a>
                     <div class="flex items-center gap-2">
-                        <button id="prev-flyer" class="w-11 h-11 rounded-full border border-outline-variant text-primary hover:bg-primary hover:text-on-primary hover:border-primary transition-all flex items-center justify-center disabled:opacity-30 disabled:pointer-events-none">
+                        <button id="prev-flyer"
+                            class="w-11 h-11 rounded-full border border-outline-variant text-primary hover:bg-primary hover:text-on-primary hover:border-primary transition-all flex items-center justify-center disabled:opacity-30 disabled:pointer-events-none">
                             <i class="fa-solid fa-chevron-left"></i>
                         </button>
-                        <button id="next-flyer" class="w-11 h-11 rounded-full border border-outline-variant text-primary hover:bg-primary hover:text-on-primary hover:border-primary transition-all flex items-center justify-center disabled:opacity-30 disabled:pointer-events-none">
+                        <button id="next-flyer"
+                            class="w-11 h-11 rounded-full border border-outline-variant text-primary hover:bg-primary hover:text-on-primary hover:border-primary transition-all flex items-center justify-center disabled:opacity-30 disabled:pointer-events-none">
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
                 </div>
             </div>
-            
+
             <style>
-                .scrollbar-hide::-webkit-scrollbar { display: none; }
-                .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+                .scrollbar-hide::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .scrollbar-hide {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
             </style>
 
-            <div id="flyer-carousel" class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-6 pb-6 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
+            <div id="flyer-carousel"
+                class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-6 pb-6 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
                 <?php if (!empty($flyers)): ?>
                     <?php foreach ($flyers as $flyer): ?>
-                        <div class="snap-center shrink-0 w-[85%] sm:w-[70%] md:w-[60%] lg:w-[50%] flex flex-col justify-between">
-                            <div class="rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-outline-variant bg-surface-container-lowest flex-grow flex flex-col relative aspect-[4/3] group cursor-pointer">
-                                <img src="<?= esc($flyer['gambar_url']) ?>" alt="<?= esc($flyer['judul']) ?>" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                                    <h3 class="text-white font-title-md font-semibold text-shadow-sm line-clamp-2"><?= esc($flyer['judul']) ?></h3>
+                        <div
+                            class="snap-center shrink-0 w-[85%] sm:w-[70%] md:w-[60%] lg:w-[50%] flex flex-col justify-between">
+                            <div
+                                class="rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-outline-variant bg-surface-container-lowest flex-grow flex flex-col relative aspect-[4/3] group cursor-pointer">
+                                <img src="<?= esc($flyer['gambar_url']) ?>" alt="<?= esc($flyer['judul']) ?>"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                    <h3 class="text-white font-title-md font-semibold text-shadow-sm line-clamp-2">
+                                        <?= esc($flyer['judul']) ?>
+                                    </h3>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <div class="w-full text-center py-16 bg-surface-container-lowest rounded-2xl border-2 border-dashed border-outline-variant">
+                    <div
+                        class="w-full text-center py-16 bg-surface-container-lowest rounded-2xl border-2 border-dashed border-outline-variant">
                         <i class="fa-solid fa-book-open text-[56px] text-outline mb-3"></i>
-                        <p class="font-body-lg text-body-lg text-on-surface-variant">Belum ada media promosi yang dipublikasikan.</p>
+                        <p class="font-body-lg text-body-lg text-on-surface-variant">Belum ada media promosi yang
+                            dipublikasikan.</p>
                     </div>
                 <?php endif; ?>
             </div>
@@ -128,24 +153,32 @@
         <section class="mt-12">
             <div class="flex justify-between items-center border-b-2 border-primary pb-2 mb-6">
                 <h2 class="font-headline-lg text-headline-lg text-primary m-0">Galeri Kegiatan</h2>
-                <a href="<?= base_url('galeri/foto') ?>" class="text-sm font-label-md text-primary hover:text-secondary-fixed transition-colors flex items-center gap-1">
+                <a href="<?= base_url('galeri/foto') ?>"
+                    class="text-sm font-label-md text-primary hover:text-secondary-fixed transition-colors flex items-center gap-1">
                     Lihat Semua <i class="fa-solid fa-arrow-right text-[18px]"></i>
                 </a>
             </div>
-            
+
             <div class="grid grid-cols-2 gap-4">
                 <?php if (!empty($galleries)): ?>
                     <?php foreach ($galleries as $gallery): ?>
-                        <div class="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer aspect-video bg-surface-container-lowest" onclick="openGalleryModal(<?= htmlspecialchars(json_encode($gallery['photos']), ENT_QUOTES, 'UTF-8') ?>, '<?= esc($gallery['judul'], 'js') ?>')">
-                            <img src="<?= esc($gallery['sampul_url']) ?>" alt="<?= esc($gallery['judul']) ?>" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-90 group-hover:opacity-100 flex flex-col justify-end p-4 transition-opacity">
-                                <h3 class="text-white font-title-sm font-bold text-shadow-sm line-clamp-2 leading-tight"><?= esc($gallery['judul']) ?></h3>
-                                <p class="text-white/80 text-xs mt-1.5 flex items-center gap-1.5 font-semibold"><i class="fa-solid fa-images text-[14px]"></i> <?= count($gallery['photos']) ?> Foto</p>
+                        <div class="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer aspect-video bg-surface-container-lowest"
+                            onclick="openGalleryModal(<?= htmlspecialchars(json_encode($gallery['photos']), ENT_QUOTES, 'UTF-8') ?>, '<?= esc($gallery['judul'], 'js') ?>')">
+                            <img src="<?= esc($gallery['sampul_url']) ?>" alt="<?= esc($gallery['judul']) ?>"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-90 group-hover:opacity-100 flex flex-col justify-end p-4 transition-opacity">
+                                <h3 class="text-white font-title-sm font-bold text-shadow-sm line-clamp-2 leading-tight">
+                                    <?= esc($gallery['judul']) ?>
+                                </h3>
+                                <p class="text-white/80 text-xs mt-1.5 flex items-center gap-1.5 font-semibold"><i
+                                        class="fa-solid fa-images text-[14px]"></i> <?= count($gallery['photos']) ?> Foto</p>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <div class="col-span-2 text-center py-10 bg-surface-container-lowest rounded-xl border border-dashed border-outline-variant">
+                    <div
+                        class="col-span-2 text-center py-10 bg-surface-container-lowest rounded-xl border border-dashed border-outline-variant">
                         <i class="fa-solid fa-folder-open text-[40px] text-outline mb-2"></i>
                         <p class="font-body-md text-on-surface-variant">Belum ada album galeri.</p>
                     </div>
@@ -154,15 +187,19 @@
         </section>
 
     </div>
-    
+
     <!-- Sidebar (30%) -->
     <aside class="w-full md:w-1/3 flex flex-col gap-8">
-        <div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant shadow-sm border-t-4 border-t-secondary flex flex-col items-center text-center">
-            <h3 class="font-title-lg text-title-lg text-primary mb-4 font-bold w-full text-left border-b border-outline-variant pb-2">
+        <div
+            class="bg-surface-container-low p-6 rounded-lg border border-outline-variant shadow-sm border-t-4 border-t-secondary flex flex-col items-center text-center">
+            <h3
+                class="font-title-lg text-title-lg text-primary mb-4 font-bold w-full text-left border-b border-outline-variant pb-2">
                 Bupati Sinjai
             </h3>
             <div class="w-48 h-60 overflow-hidden rounded-lg mb-4 shadow-sm border border-outline-variant">
-                <img src="<?= base_url('img/Ratnawati_Arif_Bupati_Sinjai.jpg') ?>" alt="Dra. Hj. Ratnawati Arif, M.Si" class="w-full h-full object-cover object-top" onerror="this.src='<?= base_url('img/logo.png') ?>'; this.className='w-full h-full object-contain p-4 bg-white';">
+                <img src="<?= base_url('img/Ratnawati_Arif_Bupati_Sinjai.jpg') ?>" alt="Dra. Hj. Ratnawati Arif, M.Si"
+                    class="w-full h-full object-cover object-top"
+                    onerror="this.src='<?= base_url('img/logo.png') ?>'; this.className='w-full h-full object-contain p-4 bg-white';">
             </div>
             <p class="text-primary font-bold font-title-lg text-base">
                 Dra. Hj. Ratnawati Arif, M.Si
@@ -172,12 +209,16 @@
             </p>
         </div>
 
-        <div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant shadow-sm border-t-4 border-t-primary flex flex-col items-center text-center">
-            <h3 class="font-title-lg text-title-lg text-primary mb-4 font-bold w-full text-left border-b border-outline-variant pb-2">
+        <div
+            class="bg-surface-container-low p-6 rounded-lg border border-outline-variant shadow-sm border-t-4 border-t-primary flex flex-col items-center text-center">
+            <h3
+                class="font-title-lg text-title-lg text-primary mb-4 font-bold w-full text-left border-b border-outline-variant pb-2">
                 Sambutan Kepala Dispusip Sinjai
             </h3>
             <div class="w-48 h-60 overflow-hidden rounded-lg mb-4 shadow-sm border border-outline-variant">
-                <img src="<?= base_url('img/kepala_dinas.jpeg') ?>" alt="Drs. ANDI MUHAMMAD IDNAN,M.Si" class="w-full h-full object-cover object-top" onerror="this.src='<?= base_url('img/logo.png') ?>'; this.className='w-full h-full object-contain p-4 bg-white';">
+                <img src="<?= base_url('img/kepala_dinas.jpeg') ?>" alt="Drs. ANDI MUHAMMAD IDNAN,M.Si"
+                    class="w-full h-full object-cover object-top"
+                    onerror="this.src='<?= base_url('img/logo.png') ?>'; this.className='w-full h-full object-contain p-4 bg-white';">
             </div>
             <p class="text-primary font-bold font-title-lg text-base">
                 Drs. ANDI MUHAMMAD IDNAN, M.Si
@@ -185,21 +226,29 @@
             <p class="text-on-surface-variant text-xs mt-1 uppercase tracking-wider font-semibold mb-4">
                 Kepala Dinas Perpustakaan &amp; Kearsipan Sinjai
             </p>
-            <div class="text-on-surface-variant text-sm text-justify font-body-md leading-relaxed border-t border-outline-variant pt-4">
-                Situs ini sebagai salah satu media informasi dalam pelayanan publik Dispusip Sinjai dan juga sebagai upaya transparansi. Harapan kami tentu saja situs ini bisa dijadikan sumber rujukan informasi berkaitan Perpustakaan dan Kearsipan serta bermanfaat bagi masyarakat. Informasi yang disediakan dalam situs ini antara lain Profil Lembaga, Layanan Perpustakaan dan Kearsipan, serta informasi lain terkait kegiatan yang dilakukan Dispusip Sinjai.
+            <div
+                class="text-on-surface-variant text-sm text-justify font-body-md leading-relaxed border-t border-outline-variant pt-4">
+                Situs ini sebagai salah satu media informasi dalam pelayanan publik Dispusip Sinjai dan juga sebagai
+                upaya transparansi. Harapan kami tentu saja situs ini bisa dijadikan sumber rujukan informasi berkaitan
+                Perpustakaan dan Kearsipan serta bermanfaat bagi masyarakat. Informasi yang disediakan dalam situs ini
+                antara lain Profil Lembaga, Layanan Perpustakaan dan Kearsipan, serta informasi lain terkait kegiatan
+                yang dilakukan Dispusip Sinjai.
             </div>
         </div>
 
-        <div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant shadow-sm border-t-4 border-t-secondary flex flex-col items-center w-full">
-            <h3 class="font-title-lg text-title-lg text-primary mb-3 font-bold w-full text-left border-b border-outline-variant pb-2 flex items-center gap-2">
+        <div
+            class="bg-surface-container-low p-6 rounded-lg border border-outline-variant shadow-sm border-t-4 border-t-secondary flex flex-col items-center w-full">
+            <h3
+                class="font-title-lg text-title-lg text-primary mb-3 font-bold w-full text-left border-b border-outline-variant pb-2 flex items-center gap-2">
                 <i class="fa-solid fa-phone text-secondary"></i>
                 Nomor Telepon Penting
             </h3>
-            
-            <div class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1.5 rounded-lg text-xs font-bold w-full text-center mb-3">
+
+            <div
+                class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1.5 rounded-lg text-xs font-bold w-full text-center mb-3">
                 Kode Area Sinjai : 0482
             </div>
-            
+
             <div class="w-full divide-y divide-outline-variant/40">
                 <div class="flex justify-between py-2 text-sm">
                     <span class="font-bold text-primary">Polisi</span>
@@ -255,15 +304,15 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const carousel = document.getElementById('flyer-carousel');
         const prevBtn = document.getElementById('prev-flyer');
         const nextBtn = document.getElementById('next-flyer');
-        
+
         if (carousel && prevBtn && nextBtn) {
             let scrollAmount = carousel.clientWidth * 0.8; // scroll 80% of width
             let autoplayInterval;
-            
+
             const startAutoplay = () => {
                 // Clear any existing interval to prevent duplicates
                 clearInterval(autoplayInterval);
@@ -281,25 +330,25 @@
             const stopAutoplay = () => {
                 clearInterval(autoplayInterval);
             };
-            
+
             prevBtn.addEventListener('click', () => {
                 stopAutoplay();
                 carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
                 startAutoplay();
             });
-            
+
             nextBtn.addEventListener('click', () => {
                 stopAutoplay();
                 carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
                 startAutoplay();
             });
-            
+
             // Pause autoplay when user interacts or hovers over the carousel
             carousel.addEventListener('mouseenter', stopAutoplay);
             carousel.addEventListener('mouseleave', startAutoplay);
             carousel.addEventListener('touchstart', stopAutoplay);
             carousel.addEventListener('touchend', startAutoplay);
-            
+
             // Handle disabled state based on scroll position
             const updateButtons = () => {
                 scrollAmount = carousel.clientWidth * 0.8; // update scroll amount on resize
@@ -307,10 +356,10 @@
                 // Add 1px buffer to account for decimal scaling in some browsers
                 nextBtn.disabled = carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 1);
             };
-            
+
             carousel.addEventListener('scroll', updateButtons);
             window.addEventListener('resize', updateButtons);
-            
+
             // Initial check and start autoplay
             setTimeout(updateButtons, 100);
             startAutoplay();
@@ -318,12 +367,14 @@
     });
 </script>
 <!-- Gallery Modal -->
-<div id="galleryModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300">
+<div id="galleryModal"
+    class="fixed inset-0 z-[100] hidden bg-black/95 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300">
     <!-- Close Button -->
-    <button onclick="closeGalleryModal()" class="absolute top-4 right-4 z-[110] w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors">
+    <button onclick="closeGalleryModal()"
+        class="absolute top-4 right-4 z-[110] w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors">
         <i class="fa-solid fa-times text-3xl"></i>
     </button>
-    
+
     <!-- Modal Header -->
     <div class="absolute top-4 left-4 right-20 z-[110]">
         <h3 id="galleryModalTitle" class="text-white font-title-lg font-bold drop-shadow-md"></h3>
@@ -332,25 +383,29 @@
 
     <!-- Image Container -->
     <div class="relative w-full max-w-5xl h-[80vh] flex items-center justify-center px-4 md:px-16 mt-12 md:mt-0">
-        <img id="galleryModalImage" src="" alt="Gallery Image" class="max-w-full max-h-full object-contain shadow-2xl transition-all duration-300 transform scale-95 opacity-0">
-        
+        <img id="galleryModalImage" src="" alt="Gallery Image"
+            class="max-w-full max-h-full object-contain shadow-2xl transition-all duration-300 transform scale-95 opacity-0">
+
         <!-- Navigation -->
-        <button id="galleryPrevBtn" class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/60 hover:bg-primary text-white rounded-full flex items-center justify-center transition-all disabled:opacity-30 disabled:pointer-events-none">
+        <button id="galleryPrevBtn"
+            class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/60 hover:bg-primary text-white rounded-full flex items-center justify-center transition-all disabled:opacity-30 disabled:pointer-events-none">
             <i class="fa-solid fa-chevron-left text-2xl md:text-4xl"></i>
         </button>
-        <button id="galleryNextBtn" class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/60 hover:bg-primary text-white rounded-full flex items-center justify-center transition-all disabled:opacity-30 disabled:pointer-events-none">
+        <button id="galleryNextBtn"
+            class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/60 hover:bg-primary text-white rounded-full flex items-center justify-center transition-all disabled:opacity-30 disabled:pointer-events-none">
             <i class="fa-solid fa-chevron-right text-2xl md:text-4xl"></i>
         </button>
     </div>
-    
+
     <!-- Caption -->
-    <div id="galleryModalCaption" class="absolute bottom-6 left-0 right-0 text-center px-4 text-white font-body-md drop-shadow-md"></div>
+    <div id="galleryModalCaption"
+        class="absolute bottom-6 left-0 right-0 text-center px-4 text-white font-body-md drop-shadow-md"></div>
 </div>
 
 <script>
     let currentGalleryPhotos = [];
     let currentPhotoIndex = 0;
-    
+
     const galleryModal = document.getElementById('galleryModal');
     const galleryModalImage = document.getElementById('galleryModalImage');
     const galleryModalTitle = document.getElementById('galleryModalTitle');
@@ -367,9 +422,9 @@
         currentGalleryPhotos = photos;
         currentPhotoIndex = 0;
         galleryModalTitle.textContent = title;
-        
+
         showPhoto(currentPhotoIndex);
-        
+
         galleryModal.classList.remove('hidden');
         // Trigger reflow
         void galleryModal.offsetWidth;
@@ -388,19 +443,19 @@
 
     function showPhoto(index) {
         if (index < 0 || index >= currentGalleryPhotos.length) return;
-        
+
         const photo = currentGalleryPhotos[index];
         galleryModalImage.classList.replace('scale-100', 'scale-95');
         galleryModalImage.classList.add('opacity-0');
-        
+
         setTimeout(() => {
             galleryModalImage.src = photo.gambar_url;
             galleryModalCaption.textContent = photo.caption || '';
             galleryModalCounter.textContent = (index + 1) + ' dari ' + currentGalleryPhotos.length + ' Foto';
-            
+
             galleryModalImage.classList.replace('scale-95', 'scale-100');
             galleryModalImage.classList.remove('opacity-0');
-            
+
             // Update buttons
             galleryPrevBtn.disabled = index === 0;
             galleryNextBtn.disabled = index === currentGalleryPhotos.length - 1;
