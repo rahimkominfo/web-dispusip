@@ -102,7 +102,7 @@ $currentUri = current_url();
 ?>
 
 <!-- Top Bar Marquee -->
-<div class="bg-primary text-on-primary py-2 text-caption font-caption">
+<div class="bg-primary text-on-primary py-2 text-caption font-caption md:hidden">
     <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter marquee">
         <p><?= esc($runningText['teks'] ?? 'Selamat Datang di Portal Resmi Dinas Perpustakaan & Kearsipan Sinjai') ?></p>
     </div>
@@ -113,22 +113,27 @@ $currentUri = current_url();
     <!-- Brand & Search Bar / Mobile Controls Row -->
     <div class="w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-4 flex items-center justify-between gap-4">
         <!-- Brand -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 shrink-0">
             <img alt="Logo DISPUSIP" class="h-10 w-auto object-contain" src="<?= base_url('img/logo.png') ?>"/>
             <div class="font-title-lg text-title-lg font-bold text-on-primary dark:text-on-primary-container leading-tight">
                 DISPUSIP <span class="text-secondary-fixed">Sinjai</span>
             </div>
         </div>
         
+        <!-- Top App Bar Running Text (Desktop & Tablet: Posisi antara Brand dan Mobile Controls / Search, sembunyi di Mobile) -->
+        <div class="hidden md:block flex-1 mx-4 overflow-hidden marquee text-on-primary dark:text-on-primary-container text-caption font-caption">
+            <p><?= esc($runningText['teks'] ?? 'Selamat Datang di Portal Resmi Dinas Perpustakaan & Kearsipan Sinjai') ?></p>
+        </div>
+
         <!-- Mobile Controls (Hamburger) -->
-        <div class="flex items-center gap-2 lg:hidden">
+        <div class="flex items-center gap-2 lg:hidden shrink-0">
             <button id="mobile-menu-toggle" class="text-on-primary dark:text-on-primary-container p-2 focus:outline-none hover:bg-white/10 rounded transition-colors" aria-label="Toggle Menu">
                 <i class="fa-solid fa-bars text-[28px]" id="menu-icon"></i>
             </button>
         </div>
 
         <!-- Search Bar (Desktop) -->
-        <div class="hidden lg:block">
+        <div class="hidden lg:block shrink-0">
             <form action="<?= base_url('berita') ?>" method="GET" class="relative">
                 <input name="cari" value="<?= esc(service('request')->getGet('cari')) ?>" class="w-64 pl-10 pr-4 py-2 bg-surface text-on-surface border border-outline rounded focus:border-primary-container focus:ring-2 focus:ring-primary-container focus:ring-offset-2 outline-none transition-all font-body-md text-body-md" placeholder="Cari informasi..." type="text"/>
                 <i class="fa-solid fa-search absolute left-3 top-2.5 text-outline"></i>
