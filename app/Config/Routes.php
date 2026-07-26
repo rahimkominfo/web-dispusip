@@ -16,6 +16,7 @@ $routes->get('galeri/video', 'Gallery::video');
 $routes->get('page/(:segment)', 'Page::view/$1');
 $routes->get('opac', 'Opac::index');
 $routes->get('ipus', 'Ipus::index');
+$routes->get('faq', 'Faq::index');
 
 // PPID Routes
 $routes->get('ppid/berkala', 'Ppid::berkala');
