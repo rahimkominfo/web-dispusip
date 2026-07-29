@@ -13,7 +13,7 @@
         <!-- Tablet (min-width: 768px) -->
         <source media="(min-width: 768px)" srcset="<?= base_url('img/hero-tablet.jpg') ?>">
         <!-- Mobile (default) -->
-        <img alt="Portal Resmi DISPUSIP Sinjai" class="absolute inset-0 w-full h-full object-cover"
+        <img alt="Portal Resmi DPK Sinjai" class="absolute inset-0 w-full h-full object-cover"
             src="<?= base_url('img/hero-mobile.jpg') ?>" />
     </picture>
 
@@ -213,7 +213,7 @@
             class="bg-surface-container-low p-6 rounded-lg border border-outline-variant shadow-sm border-t-4 border-t-primary flex flex-col items-center text-center">
             <h3
                 class="font-title-lg text-title-lg text-primary mb-4 font-bold w-full text-left border-b border-outline-variant pb-2">
-                Sambutan Kepala Dispusip Sinjai
+                Sambutan Kepala DPK Sinjai
             </h3>
             <div class="w-48 h-60 overflow-hidden rounded-lg mb-4 shadow-sm border border-outline-variant">
                 <img src="<?= base_url('img/kepala_dinas.jpeg') ?>" alt="Drs. ANDI MUHAMMAD IDNAN,M.Si"
@@ -228,11 +228,11 @@
             </p>
             <div
                 class="text-on-surface-variant text-sm text-justify font-body-md leading-relaxed border-t border-outline-variant pt-4">
-                Situs ini sebagai salah satu media informasi dalam pelayanan publik Dispusip Sinjai dan juga sebagai
+                Situs ini sebagai salah satu media informasi dalam pelayanan publik DPK Sinjai dan juga sebagai
                 upaya transparansi. Harapan kami tentu saja situs ini bisa dijadikan sumber rujukan informasi berkaitan
                 Perpustakaan dan Kearsipan serta bermanfaat bagi masyarakat. Informasi yang disediakan dalam situs ini
                 antara lain Profil Lembaga, Layanan Perpustakaan dan Kearsipan, serta informasi lain terkait kegiatan
-                yang dilakukan Dispusip Sinjai.
+                yang dilakukan DPK Sinjai.
             </div>
         </div>
 

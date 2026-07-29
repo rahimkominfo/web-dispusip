@@ -1,6 +1,6 @@
-# Rekomendasi Ukuran Banner Hero Section - DISPUSIP Sinjai
+# Rekomendasi Ukuran Banner Hero Section - DPK Sinjai
 
-Dokumen ini berisi spesifikasi ukuran gambar/banner yang disiapkan secara responsif untuk Hero Section pada halaman utama portal Dinas Perpustakaan dan Kearsipan (Dispusip) Sinjai.
+Dokumen ini berisi spesifikasi ukuran gambar/banner yang disiapkan secara responsif untuk Hero Section pada halaman utama portal Dinas Perpustakaan dan Kearsipan (DPK) Sinjai.
 
 Menggunakan pendekatan responsif terpisah (desktop, tablet, mobile) memastikan visual tetap tajam, teks tidak terpotong, dan performa pemuatan halaman (load speed) optimal karena ukuran file yang disesuaikan untuk perangkat mobile lebih kecil.
 

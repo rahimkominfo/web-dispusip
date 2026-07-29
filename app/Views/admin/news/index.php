@@ -89,7 +89,7 @@
                             </td>
                             <td class="p-4 py-3">
                                 <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-surface-container text-on-surface">
-                                    <?= esc($art['author_name'] ?: 'Staf Dispusip') ?>
+                                    <?= esc($art['author_name'] ?: 'Staf DPK') ?>
                                 </span>
                             </td>
                             <td class="p-4 py-3 text-center font-medium text-on-surface-variant">

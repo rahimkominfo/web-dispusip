@@ -115,7 +115,7 @@ class Comments extends BaseController
         }
 
         // Get admin user name or use default
-        $adminName = session()->get('nama_publik') ?: 'Admin Dispusip';
+        $adminName = session()->get('nama_publik') ?: 'Admin DPK';
 
         $this->komentarModel->save([
             'artikel_id'        => $parentComment['artikel_id'],

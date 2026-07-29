@@ -12,7 +12,7 @@
 
 <!-- Page Title -->
 <div class="mb-8">
-    <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Arsip Berita &amp; Artikel DISPUSIP</h1>
+    <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Arsip Berita &amp; Artikel DPK</h1>
     <p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-3xl">Kumpulan berita terbaru, artikel informatif, dan dokumentasi kegiatan dari Dinas Perpustakaan dan Kearsipan.</p>
 </div>
 

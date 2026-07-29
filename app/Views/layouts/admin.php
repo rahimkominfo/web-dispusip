@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title><?= $this->renderSection('title') ?> - DISPUSIP Admin Dashboard</title>
+    <title><?= $this->renderSection('title') ?> - DPK Admin Dashboard</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?= base_url('img/logo.png') ?>"/>
@@ -34,8 +34,8 @@ $inactiveClass = "flex items-center gap-3 text-on-surface-variant px-4 py-3 hove
 <!-- SideNavBar -->
 <nav class="docked left-0 h-full w-64 border-r border-outline-variant flat no shadows fixed left-0 top-0 bottom-0 w-64 flex flex-col bg-surface-container-low z-40 hidden md:flex">
     <div class="h-[64px] flex items-center px-gutter gap-3 border-b border-outline-variant bg-surface-container-low shrink-0">
-        <img alt="Logo DISPUSIP SINJAI" class="h-10 w-auto object-contain" src="<?= base_url('img/logo.png') ?>"/>
-        <span class="font-bold text-primary text-base md:text-lg tracking-tight">DISPUSIP SINJAI</span>
+        <img alt="Logo DPK SINJAI" class="h-10 w-auto object-contain" src="<?= base_url('img/logo.png') ?>"/>
+        <span class="font-bold text-primary text-base md:text-lg tracking-tight">DPK SINJAI</span>
     </div>
     <div class="px-gutter py-6 flex-grow overflow-y-auto">
         <ul class="space-y-2">
@@ -152,11 +152,11 @@ $inactiveClass = "flex items-center gap-3 text-on-surface-variant px-4 py-3 hove
             </button>
             <!-- Brand on Mobile -->
             <a class="flex items-center gap-2 md:hidden" href="#">
-                <img alt="Logo DISPUSIP SINJAI" class="h-8 w-auto object-contain" src="<?= base_url('img/logo.png') ?>"/>
-                <span class="font-bold text-on-primary text-base tracking-tight">DISPUSIP SINJAI</span>
+                <img alt="Logo DPK SINJAI" class="h-8 w-auto object-contain" src="<?= base_url('img/logo.png') ?>"/>
+                <span class="font-bold text-on-primary text-base tracking-tight">DPK SINJAI</span>
             </a>
             <!-- Title on Desktop -->
-            <h1 class="hidden md:block font-headline-md text-headline-md font-bold text-on-primary">Panel Admin DISPUSIP</h1>
+            <h1 class="hidden md:block font-headline-md text-headline-md font-bold text-on-primary">Panel Admin DPK</h1>
         </div>
         <div class="flex items-center gap-3 text-on-primary">
             <!-- User Info Badge -->
@@ -184,7 +184,7 @@ $inactiveClass = "flex items-center gap-3 text-on-surface-variant px-4 py-3 hove
     <!-- Footer -->
     <footer class="w-full py-gutter px-gutter flex flex-col md:flex-row justify-between items-center bg-primary text-on-primary border-t border-on-primary-fixed-variant mt-12 flat no shadows">
         <div class="font-headline-md text-headline-md text-on-primary mb-4 md:mb-0 text-sm opacity-80">
-            © 2026 Panel Admin DISPUSIP. Hak cipta dilindungi.
+            © 2026 Panel Admin DPK. Hak cipta dilindungi.
         </div>
         <div class="flex gap-6 font-label-md text-label-md">
             <a class="text-on-primary-fixed-variant hover:text-secondary-fixed-dim underline transition-all" href="#">Bantuan</a>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Login Admin - DISPUSIP Sinjai</title>
+    <title>Login Admin - DPK Sinjai</title>
     
     <!-- CSS Portal & Admin -->
     <link href="<?= base_url('css/app.css') ?>" rel="stylesheet"/>
@@ -43,9 +43,9 @@
         <!-- Header -->
         <div class="flex flex-col items-center mb-8 text-center">
             <div class="w-20 h-20 mb-4 bg-white rounded-full p-2.5 shadow-md flex items-center justify-center transition-transform duration-300 hover:rotate-6">
-                <img alt="Logo DISPUSIP SINJAI" class="h-full w-auto object-contain" src="<?= base_url('img/logo.png') ?>"/>
+                <img alt="Logo DPK SINJAI" class="h-full w-auto object-contain" src="<?= base_url('img/logo.png') ?>"/>
             </div>
-            <h1 class="text-2xl font-black text-primary tracking-tight">DISPUSIP SINJAI</h1>
+            <h1 class="text-2xl font-black text-primary tracking-tight">DPK SINJAI</h1>
             <p class="text-xs text-on-surface-variant font-medium mt-1 uppercase tracking-widest">Portal Administrasi</p>
         </div>
 
